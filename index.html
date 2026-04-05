@@ -211,7 +211,11 @@
 				border: 1px solid rgba(148, 163, 184, 0.18);
 				border-radius: 1rem;
 				background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.92));
-				transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+				transition:
+					transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+					box-shadow 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+					border-color 0.28s ease,
+					filter 0.28s ease;
 			}
 
 			.theme-card::after {
@@ -226,15 +230,16 @@
 				opacity: 0;
 			}
 
-			.theme-card:hover {
-				transform: translateY(-4px);
-				border-color: rgba(11, 79, 138, 0.28);
-				box-shadow: 0 18px 34px rgba(11, 79, 138, 0.16);
+			.theme-card:not(.section-accordion):hover {
+				transform: translateY(-6px) scale(1.012);
+				border-color: rgba(11, 79, 138, 0.32);
+				box-shadow: 0 22px 40px rgba(11, 79, 138, 0.2);
+				filter: saturate(1.03);
 			}
 
-			.theme-card:hover::after {
-				opacity: 1;
-				animation: cardShine 1s ease;
+			.theme-card:not(.section-accordion):hover::after {
+				opacity: 0;
+				animation: none;
 			}
 
 			.theme-soft-panel {
@@ -337,6 +342,170 @@
 				width: 0.4rem;
 				border-radius: 9999px;
 				background: linear-gradient(180deg, var(--theme-blue), var(--theme-green));
+			}
+
+			.read-more {
+				margin-top: 0.45rem;
+			}
+
+			.read-more summary {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				cursor: pointer;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: var(--theme-blue);
+				background: rgba(237, 246, 255, 0.95);
+				border: 1px solid rgba(11, 79, 138, 0.2);
+				padding: 0.3rem 0.62rem;
+				border-radius: 9999px;
+				list-style: none;
+				transition: all 0.2s ease;
+			}
+
+			.read-more summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.read-more summary:hover {
+				background: rgba(232, 251, 246, 0.95);
+				border-color: rgba(31, 165, 143, 0.35);
+			}
+
+			.read-more[open] > summary {
+				display: none;
+			}
+
+			.read-more .read-more-content {
+				margin-top: 0.5rem;
+				font-size: 0.75rem;
+				line-height: 1.45;
+				color: #475569;
+			}
+
+			.read-more .read-less-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				cursor: pointer;
+				margin-top: 0.5rem;
+				font-size: 0.72rem;
+				font-weight: 700;
+				color: var(--theme-blue);
+				background: rgba(11, 79, 138, 0.08);
+				border: 1px solid rgba(11, 79, 138, 0.2);
+				padding: 0.3rem 0.62rem;
+				border-radius: 9999px;
+				transition: all 0.2s ease;
+			}
+
+			.read-more .read-less-btn:hover {
+				background: rgba(232, 251, 246, 0.95);
+				border-color: rgba(31, 165, 143, 0.35);
+			}
+
+			.section-accordion {
+				overflow: hidden;
+			}
+
+			.section-accordion > summary {
+				list-style: none;
+				cursor: pointer;
+				padding: 1.25rem 1.25rem 0.75rem;
+			}
+
+			.section-accordion > summary::-webkit-details-marker {
+				display: none;
+			}
+
+			.section-accordion > summary h3 {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+			}
+
+			.section-accordion > summary h3::after {
+				content: "+";
+				font-size: 1.35rem;
+				line-height: 1;
+				color: var(--theme-blue);
+				font-weight: 700;
+			}
+
+			.section-accordion[open] > summary h3::after {
+				content: "−";
+			}
+
+			.section-accordion > .accordion-body {
+				padding: 0 1.25rem 1.25rem;
+			}
+
+			#services .section-accordion,
+			#services .section-accordion * {
+				animation: none !important;
+				transition: none !important;
+			}
+
+			#services .section-accordion .treatment-item,
+			#services .treatment-item * {
+				animation: none !important;
+				transition: none !important;
+			}
+
+			#services .section-accordion:hover,
+			#services .treatment-item:hover {
+				transform: none !important;
+				filter: none !important;
+			}
+
+			#services .section-accordion::after,
+			#services .section-accordion:hover::after {
+				opacity: 0 !important;
+				animation: none !important;
+			}
+
+			.treatment-list {
+				display: grid;
+				gap: 1rem;
+			}
+
+			.treatment-item {
+				display: grid;
+				width: 100%;
+			}
+
+			#services .theme-card > img {
+				width: 100%;
+				height: 240px !important;
+				object-fit: cover;
+			}
+
+			.treatment-item > img {
+				height: 240px !important;
+				min-height: 240px;
+				width: 100%;
+				object-fit: cover;
+			}
+
+			.treatment-item > div {
+				padding: 1rem;
+			}
+
+			@media (min-width: 768px) {
+				.treatment-item {
+					grid-template-columns: minmax(240px, 42%) 1fr;
+					align-items: stretch;
+				}
+
+				.treatment-list .treatment-item:nth-child(even) > img {
+					order: 2;
+				}
+
+				.treatment-list .treatment-item:nth-child(even) > div {
+					order: 1;
+				}
 			}
 
 			.testimonial-swiper {
@@ -786,38 +955,275 @@
 						</article>
 					</div>
 
-					<div class="reveal-stagger mt-10 grid gap-6 lg:grid-cols-2">
-						<div class="theme-card rounded-2xl bg-white p-6 shadow-soft">
-							<h3 class="text-xl font-extrabold text-slate-900">Electrotherapy Modalities</h3>
-							<ul class="theme-list mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
-								<li>Short Wave Diathermy (SWD)</li>
-								<li>Long Wave Diathermy (LWD)</li>
-								<li>Ultrasound Therapy (UST)</li>
-								<li>Wax Therapy</li>
-								<li>Electrical Muscle Stimulation</li>
-								<li>TENS</li>
-								<li>Advanced Laser Therapy (Class IV, European CE Certified)</li>
-								<li>Hot & Cold Therapy</li>
-								<li>Interferential Therapy (IFT)</li>
-								<li>Exercise Therapy</li>
-								<li>Cervical & Lumbar Traction</li>
-							</ul>
+					<div class="mt-10 grid gap-10">
+						<details class="section-accordion theme-card w-full rounded-2xl bg-white shadow-soft" open>
+							<summary>
+								<h3 class="text-xl font-extrabold text-slate-900">Electrotherapy Modalities</h3>
+								<p class="mt-2 text-sm leading-6 text-slate-600">
+									Targeted electrotherapy options to reduce pain, improve circulation, speed tissue healing, and support faster functional recovery.
+								</p>
+							</summary>
+							<div class="accordion-body">
+							<div class="treatment-list mt-2">
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" alt="Short wave diathermy electrotherapy machine setup in physiotherapy clinic" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Short Wave Diathermy (SWD)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Deep tissue heating to ease stiffness, muscle spasm, and chronic joint pain.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Best for chronic muscular tightness and old joint pain where deep heat improves local blood flow. It is usually combined with mobilization and stretching for longer-lasting relief.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="./public/service-pain-management.jpg" alt="Long wave diathermy electrotherapy setup in physiotherapy clinic" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Long Wave Diathermy (LWD)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Comfortable thermal modality for pain relief, circulation boost, and soft tissue relaxation.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">LWD provides a gentler heat profile than traditional deep heating, making it useful in sensitive regions. It helps reduce guarding before movement therapy and exercise sessions.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?auto=format&fit=crop&w=1200&q=80" alt="Ultrasound therapy session for tendon healing and inflammation control" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Ultrasound Therapy (UST)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Ultrasonic waves for tendon healing, scar tissue remodeling, and inflammation control.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">UST is commonly used for tendinopathy, soft tissue adhesions, and localized inflammation. Dosage is selected based on tissue depth and stage of healing.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&w=1200&q=80" alt="Paraffin wax therapy for hand and wrist stiffness in physiotherapy" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Wax Therapy</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Soothing paraffin heat therapy that reduces stiffness in hands, wrists, and small joints.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Especially helpful in post-immobilization stiffness and osteoarthritic small joints. Wax heat prepares tissues for active hand therapy and improves movement comfort.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://www.evenskyn.com/cdn/shop/articles/microcurrent_facial.jpg?v=1765869861&width=1200" alt="Electrical muscle stimulation during rehabilitation" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Electrical Muscle Stimulation</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Neuromuscular stimulation to re-activate weak muscles and improve contraction quality.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Often used after surgery, injury, or prolonged disuse to re-educate muscle firing. It complements voluntary exercise and supports better motor recovery.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://www.kaly.com/blog/wp-content/uploads/2023/12/tens-unit-for-neck-pain_4-1.webp" alt="TENS therapy for pain management" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">TENS</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Non-invasive electrical pain modulation for neck, back, and joint discomfort.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">TENS is useful for acute and chronic pain episodes and can reduce analgesic dependency in some patients. Frequency and intensity are individualized for best response.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80" alt="Class IV advanced laser therapy for pain and inflammation" class="h-32 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Advanced Laser Therapy (Class IV, European CE Certified)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">High-intensity therapeutic laser to reduce inflammation, accelerate tissue repair, and ease pain.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Class IV laser reaches deeper targets with photobiomodulation effects that support healing and pain reduction. Helpful in tendon, ligament, and chronic joint conditions.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=800&q=80" alt="Hot and cold therapy application" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Hot &amp; Cold Therapy</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Phase-specific thermal care to decrease swelling, reduce soreness, and improve mobility.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Cold packs are ideal for acute swelling and inflammation, while heat helps chronic tightness and stiffness. We guide timing and duration to prevent overuse.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?auto=format&fit=crop&w=800&q=80" alt="Interferential therapy session for pain relief" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Interferential Therapy (IFT)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Medium-frequency current for deeper pain relief and edema control in musculoskeletal issues.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">IFT can target larger painful areas with comfortable stimulation and is often used in back pain, shoulder pain, and post-injury swelling control.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="./public/service-sports-injury-rehab.jpg" alt="Guided exercise therapy session" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Exercise Therapy</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Customized strengthening, flexibility, and functional drills tailored to recovery goals.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">This is the core of long-term recovery. Programs are progressed in stages to improve strength, endurance, balance, and daily function safely.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=800&q=80" alt="Cervical and lumbar traction therapy setup" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Cervical &amp; Lumbar Traction</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Gentle decompression to relieve nerve pressure, disc stress, and radiating spinal pain.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Used selectively for cervical/lumbar radicular symptoms, traction may improve space around compressed nerves. It is integrated with posture and core rehab.</p>
+										</details>
+									</div>
+								</article>
+							</div>
+							</div>
+						</details>
 						</div>
-						<div class="theme-card rounded-2xl bg-white p-6 shadow-soft">
-							<h3 class="text-xl font-extrabold text-slate-900">Rehab Programs Available For</h3>
-							<ul class="theme-list mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
-								<li>Frozen Shoulder</li>
-								<li>Cervical Pain & Vertigo</li>
-								<li>Low Back Pain (Slip Disc)</li>
-								<li>Arthritis (Knee / Hip Pain)</li>
-								<li>Post Fracture Rehabilitation</li>
-								<li>Tennis Elbow</li>
-								<li>Paralysis / Cerebral Palsy / Polio</li>
-								<li>Total Knee Replacement</li>
-								<li>Total Hip Replacement</li>
-								<li>Ligament Reconstruction</li>
-								<li>Spinal Surgery Recovery</li>
-							</ul>
+
+						<details class="section-accordion theme-card mt-8 w-full rounded-2xl bg-white shadow-soft">
+							<summary>
+								<h3 class="text-xl font-extrabold text-slate-900">Rehab Programs Available For</h3>
+								<p class="mt-2 text-sm leading-6 text-slate-600">
+									Condition-specific rehabilitation pathways focused on pain reduction, function restoration, and long-term relapse prevention.
+								</p>
+							</summary>
+							<div class="accordion-body">
+							<div class="treatment-list mt-2">
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80" alt="Frozen shoulder rehabilitation exercises" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Frozen Shoulder</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Progressive mobility and capsule-release protocol to restore pain-free shoulder movement.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Treatment typically includes pain-phase care, mobility restoration, and strengthening phases. Regular supervised exercise improves recovery speed and shoulder function.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=80" alt="Neck pain and vertigo rehabilitation" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Cervical Pain &amp; Vertigo</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Posture correction, vestibular drills, and neck stabilization for symptom control.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Combines manual cervical techniques, gaze stabilization, and deep neck flexor training to reduce dizziness episodes and neck strain in daily activities.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=800&q=80" alt="Low back pain rehabilitation session" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Low Back Pain (Slip Disc)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Core stabilization, neural unloading, and graded functional retraining for back health.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">A structured plan addresses pain flare management, posture habits, lifting mechanics, and safe return to work/activity while minimizing recurrence risk.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Arthritis knee and hip physiotherapy" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Arthritis (Knee / Hip Pain)</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Joint-friendly strengthening and mobility care to improve walking tolerance and comfort.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Focus is on pain-modulation exercises, muscle support around the joint, and gait correction. Lifestyle advice helps reduce stress on arthritic joints.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="./public/service-post-surgery-rehab.jpg" alt="Post fracture rehabilitation support" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Post Fracture Rehabilitation</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Stepwise range, strength, and confidence training after immobilization or surgery.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Rehab progresses from stiffness reduction to weight-bearing and functional retraining. It is customized to fracture site, fixation type, and healing timeline.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80" alt="Tennis elbow rehabilitation exercises" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Tennis Elbow</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Tendon loading protocol and grip retraining to reduce lateral elbow pain recurrence.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Includes progressive eccentric loading, forearm conditioning, and workstation/sport technique correction to reduce repetitive strain on the extensor tendon.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=1200&q=80" alt="Neuro rehabilitation for paralysis and cerebral palsy" class="h-32 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Paralysis / Cerebral Palsy / Polio</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Neurological rehab emphasizing trunk control, gait training, and ADL independence.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Programs include neurofacilitation, tone management, balance work, and caregiver education. The goal is safe mobility and meaningful daily independence.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="./public/service-post-surgery-rehab.jpg" alt="Total knee replacement rehabilitation" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Total Knee Replacement</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">ROM recovery, quadriceps strengthening, and gait normalization post knee replacement.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Early rehab focuses on swelling control and extension gain; later stages target stair climbing, endurance, and confidence in community walking.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80" alt="Total hip replacement rehabilitation exercises" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Total Hip Replacement</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Safe mobility progression with hip precautions, balance retraining, and endurance drills.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Rehab addresses safe transfers, walking pattern correction, and glute strengthening while respecting post-surgical precautions during early recovery.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="./public/service-sports-injury-rehab.jpg" alt="Ligament reconstruction physiotherapy plan" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Ligament Reconstruction</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Criterion-based rehab to restore stability, power, and return-to-activity readiness.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Milestone-based progression covers swelling control, strength symmetry, neuromuscular control, and sport/work-specific drills before return clearance.</p>
+										</details>
+									</div>
+								</article>
+								<article class="treatment-item overflow-hidden rounded-xl border border-slate-100 bg-slate-50">
+									<img src="https://images.unsplash.com/photo-1581594549595-35f6edc7b762?auto=format&fit=crop&w=800&q=80" alt="Spinal surgery recovery physiotherapy" class="h-28 w-full object-cover" loading="lazy" />
+									<div class="p-3">
+										<h4 class="text-sm font-bold text-slate-900">Spinal Surgery Recovery</h4>
+										<p class="mt-1 text-xs leading-5 text-slate-600">Protected movement training, posture correction, and staged functional reconditioning.</p>
+										<details class="read-more">
+											<summary>Read more</summary>
+											<p class="read-more-content">Program phases are aligned with surgeon precautions and healing stage, focusing on core control, safe movement mechanics, and graded return to daily life.</p>
+										</details>
+									</div>
+								</article>
+							</div>
+							</div>
+						</details>
 						</div>
 					</div>
 				</div>
@@ -1086,7 +1492,9 @@
 			// 	window.location.replace('/404');
 			// }
 
-			lucide.createIcons();
+			if (window.lucide && typeof lucide.createIcons === 'function') {
+				lucide.createIcons();
+			}
 
 			const testimonialsSwiperEl = document.querySelector('.testimonial-swiper');
 			if (testimonialsSwiperEl && typeof Swiper !== 'undefined') {
@@ -1127,21 +1535,250 @@
 			revealElements.forEach((el, index) => {
 				const delay = Math.min(index * 40, 220);
 				el.style.setProperty('--reveal-delay', `${delay}ms`);
+				el.classList.add('visible');
 			});
 
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('visible');
-							observer.unobserve(entry.target);
-						}
-					});
+			const treatmentRichContent = {
+				'Short Wave Diathermy (SWD)': {
+					highlights: ['Deep heat for chronic stiffness and muscle spasm', 'Improves circulation before stretching and mobilization'],
+					readMore:
+						'SWD delivers deep therapeutic heat in tissues to reduce chronic pain, stiffness, and protective muscle guarding. It is especially useful before manual therapy and mobility drills because warm tissues respond better to stretching and joint movement.'
 				},
-				{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-			);
+				'Long Wave Diathermy (LWD)': {
+					highlights: ['Comfortable thermal pain-relief modality', 'Supports soft tissue relaxation and pre-exercise readiness'],
+					readMore:
+						'LWD provides gentle, well-tolerated heat for painful regions where tissue irritability is high. It helps reduce discomfort, improves local blood flow, and prepares muscles and fascia for active rehabilitation sessions.'
+				},
+				'Ultrasound Therapy (UST)': {
+					highlights: ['Helpful in tendinopathy and scar tissue restrictions', 'Promotes tissue healing with stage-specific dosage'],
+					readMore:
+						'UST uses therapeutic sound waves to support repair of tendons, ligaments, and soft tissues. Pulsed or continuous modes are selected as per healing stage so inflammation control and tissue remodeling are both addressed safely.'
+				},
+				'Wax Therapy': {
+					highlights: ['Excellent for hand and wrist joint stiffness', 'Improves comfort before active hand exercises'],
+					readMore:
+						'Paraffin wax heat offers uniform warmth for small joints affected by stiffness and pain, especially after immobilization. It helps reduce movement discomfort and improves range before grip and dexterity exercises.'
+				},
+				'Electrical Muscle Stimulation': {
+					highlights: ['Re-educates weak or inhibited muscles', 'Combines well with voluntary strengthening drills'],
+					readMore:
+						'EMS activates targeted muscles with controlled electrical impulses when natural contraction is weak after injury or surgery. This improves recruitment quality and supports faster transition to functional movement training.'
+				},
+				TENS: {
+					highlights: ['Non-invasive pain gate modulation', 'Useful for neck, back, and joint pain episodes'],
+					readMore:
+						'TENS reduces pain signaling and provides temporary relief, making it easier for patients to move and exercise. Frequency and intensity are customized to ensure comfort while maximizing analgesic benefit.'
+				},
+				'Advanced Laser Therapy (Class IV, European CE Certified)': {
+					highlights: ['High-intensity photobiomodulation support', 'Helps reduce inflammation and persistent pain'],
+					readMore:
+						'Class IV laser therapy targets deeper tissues to improve cellular healing response in chronic and overuse injuries. It is commonly integrated with manual and exercise therapy for better pain and recovery outcomes.'
+				},
+				'Hot & Cold Therapy': {
+					highlights: ['Cold for acute swelling and irritation', 'Heat for chronic tightness and mobility improvement'],
+					readMore:
+						'Thermal therapy is selected according to tissue stage: cold in acute phases and heat in subacute/chronic phases. Correct timing and dosage help manage pain while protecting healing tissues from overload.'
+				},
+				'Interferential Therapy (IFT)': {
+					highlights: ['Comfortable stimulation for deeper pain zones', 'Supports edema control and pain reduction'],
+					readMore:
+						'IFT uses intersecting medium-frequency currents to treat painful musculoskeletal regions with better comfort. It is frequently used in back, shoulder, and post-injury conditions to improve tolerance for movement therapy.'
+				},
+				'Exercise Therapy': {
+					highlights: ['Core element of long-term recovery', 'Progressive strengthening, mobility, and function drills'],
+					readMore:
+						'Exercise therapy is individualized by pain level, movement quality, and recovery goals. Programs progress through controlled stages to rebuild strength, endurance, balance, and confidence in daily activities.'
+				},
+				'Cervical & Lumbar Traction': {
+					highlights: ['Selective decompression for radicular symptoms', 'Combined with posture and stabilization rehab'],
+					readMore:
+						'Traction is used in carefully selected cases to reduce compressive load over cervical or lumbar segments. It can ease nerve-related symptoms and is paired with core/neck stabilization for sustained results.'
+				},
+				'Frozen Shoulder': {
+					highlights: ['Phase-wise mobility restoration protocol', 'Pain control with capsule-focused manual work'],
+					readMore:
+						'Frozen shoulder rehab addresses pain phase, stiffness phase, and recovery phase with structured progression. Gentle mobilization, stretching, and strengthening restore functional shoulder movement safely.'
+				},
+				'Cervical Pain & Vertigo': {
+					highlights: ['Deep neck stabilization and posture correction', 'Vestibular retraining for dizziness control'],
+					readMore:
+						'Treatment combines cervical manual therapy with vestibular and gaze stabilization drills to reduce dizziness triggers. It also improves neck endurance and head-neck control for better daily comfort.'
+				},
+				'Low Back Pain (Slip Disc)': {
+					highlights: ['Core control and movement pattern correction', 'Graded return to work and activity'],
+					readMore:
+						'Rehab focuses on pain calming, lumbar protection strategies, and progressive core strengthening. Patients are guided on sitting, lifting, and bending mechanics to reduce recurrence risk long-term.'
+				},
+				'Arthritis (Knee / Hip Pain)': {
+					highlights: ['Joint-friendly strength and gait training', 'Improves walking tolerance and day-to-day function'],
+					readMore:
+						'Arthritis programs include low-impact strengthening, mobility routines, and load-management education. The goal is to decrease pain flare frequency and improve independence in daily movement.'
+				},
+				'Post Fracture Rehabilitation': {
+					highlights: ['Progress from ROM recovery to strength', 'Confidence rebuilding for weight-bearing and function'],
+					readMore:
+						'This pathway starts with stiffness and swelling management, then advances into controlled loading and functional retraining. Plans are customized by fracture location, fixation method, and healing timelines.'
+				},
+				'Tennis Elbow': {
+					highlights: ['Tendon-loading progression with pain monitoring', 'Grip and forearm conditioning with ergonomic correction'],
+					readMore:
+						'Tennis elbow rehab emphasizes progressive extensor tendon loading and activity modification. It improves tissue capacity and reduces repetitive overload from work, household, or sport tasks.'
+				},
+				'Paralysis / Cerebral Palsy / Polio': {
+					highlights: ['Neurofacilitation for trunk and limb control', 'ADL and gait-focused functional training'],
+					readMore:
+						'Neurological rehabilitation is tailored to movement quality, balance, tone, and functional goals. It includes caregiver guidance, safety training, and daily-living integration for meaningful independence.'
+				},
+				'Total Knee Replacement': {
+					highlights: ['Early swelling control and ROM milestones', 'Quadriceps activation and gait normalization'],
+					readMore:
+						'TKR rehab begins with pain and edema control, extension recovery, and safe walking training. Later phases target stair climbing, endurance, and functional strength for active community mobility.'
+				},
+				'Total Hip Replacement': {
+					highlights: ['Safe mobility with post-op precautions', 'Hip stability and glute strengthening progression'],
+					readMore:
+						'THR rehabilitation focuses on transfer safety, gait correction, and gradual hip strengthening while respecting surgical precautions. Functional progression is designed for stable and confident movement.'
+				},
+				'Ligament Reconstruction': {
+					highlights: ['Criterion-based progression across healing phases', 'Strength symmetry and neuromuscular readiness'],
+					readMore:
+						'Rehab follows milestone-based criteria rather than only time, improving return-to-activity safety. It includes controlled loading, dynamic stability, and task-specific drills before clearance.'
+				},
+				'Spinal Surgery Recovery': {
+					highlights: ['Protected movement with surgeon precautions', 'Core reconditioning and posture retraining'],
+					readMore:
+						'This program is aligned with surgical guidelines and healing stages to restore function safely. It emphasizes movement confidence, trunk stability, and gradual return to daily routines without overload.'
+				}
+			};
 
-			revealElements.forEach((el) => observer.observe(el));
+			const treatmentBestFor = {
+				'Short Wave Diathermy (SWD)': ['Chronic low back pain', 'Joint stiffness', 'Muscle spasm'],
+				'Long Wave Diathermy (LWD)': ['Soft tissue tightness', 'Persistent ache', 'Pre-exercise warmup'],
+				'Ultrasound Therapy (UST)': ['Tendinitis', 'Ligament strain', 'Scar adhesions'],
+				'Wax Therapy': ['Hand stiffness', 'Wrist pain', 'Small joint arthritis'],
+				'Electrical Muscle Stimulation': ['Post-surgery weakness', 'Muscle inhibition', 'Motor re-education'],
+				TENS: ['Neck pain', 'Back pain', 'Joint discomfort'],
+				'Advanced Laser Therapy (Class IV, European CE Certified)': ['Inflammatory pain', 'Tendon overload', 'Chronic injuries'],
+				'Hot & Cold Therapy': ['Acute swelling', 'Delayed soreness', 'Chronic stiffness'],
+				'Interferential Therapy (IFT)': ['Deep musculoskeletal pain', 'Edema control', 'Post-injury pain'],
+				'Exercise Therapy': ['Strength deficit', 'Mobility loss', 'Functional recovery'],
+				'Cervical & Lumbar Traction': ['Radicular pain', 'Disc-related symptoms', 'Nerve compression signs'],
+				'Frozen Shoulder': ['Shoulder stiffness', 'Painful ROM', 'Capsular tightness'],
+				'Cervical Pain & Vertigo': ['Cervicogenic dizziness', 'Neck strain', 'Postural imbalance'],
+				'Low Back Pain (Slip Disc)': ['Slip disc pain', 'Core weakness', 'Movement fear'],
+				'Arthritis (Knee / Hip Pain)': ['Knee OA pain', 'Hip OA stiffness', 'Reduced walking tolerance'],
+				'Post Fracture Rehabilitation': ['Post-cast stiffness', 'Weakness after fracture', 'Gait confidence loss'],
+				'Tennis Elbow': ['Lateral elbow pain', 'Grip weakness', 'Repetitive strain'],
+				'Paralysis / Cerebral Palsy / Polio': ['Gait deficits', 'ADL limitations', 'Trunk control issues'],
+				'Total Knee Replacement': ['Post-op knee rehab', 'ROM recovery', 'Quadriceps reactivation'],
+				'Total Hip Replacement': ['Post-op hip rehab', 'Balance retraining', 'Safe mobility progression'],
+				'Ligament Reconstruction': ['Post-ACL rehab', 'Joint instability', 'Return-to-sport prep'],
+				'Spinal Surgery Recovery': ['Post-spine surgery', 'Core reconditioning', 'Safe return to activity']
+			};
+
+			const treatmentItems = document.querySelectorAll('.treatment-item');
+			treatmentItems.forEach((item) => {
+				const titleEl = item.querySelector('h4');
+				if (!titleEl) return;
+
+				const title = titleEl.textContent.trim();
+				const data = treatmentRichContent[title];
+				if (!data) return;
+
+				const descriptionEl = item.querySelector('p');
+				const readMoreContent = item.querySelector('.read-more-content');
+
+				if (readMoreContent) {
+					readMoreContent.textContent = data.readMore;
+				}
+
+				const existingHighlights = item.querySelector('.treatment-highlights');
+				if (!existingHighlights && descriptionEl) {
+					const highlightsEl = document.createElement('ul');
+					highlightsEl.className = 'theme-list treatment-highlights mt-2 grid gap-1 text-xs text-slate-600';
+					data.highlights.forEach((highlight) => {
+						const li = document.createElement('li');
+						li.textContent = highlight;
+						highlightsEl.appendChild(li);
+					});
+					descriptionEl.insertAdjacentElement('afterend', highlightsEl);
+				}
+
+				const existingMeta = item.querySelector('.treatment-meta');
+				if (!existingMeta && descriptionEl) {
+					const bestForTags = treatmentBestFor[title] || ['Pain reduction', 'Mobility improvement', 'Function restoration'];
+
+					const sectionHeading = item.closest('details.section-accordion')?.querySelector('summary h3')?.textContent || '';
+					const isElectroSection = sectionHeading.includes('Electrotherapy');
+
+					const sessionFocus = isElectroSection
+						? 'Session focus: symptom assessment → targeted modality dose → response check → exercise carryover.'
+						: 'Session focus: phase-wise rehab goals → supervised drills → movement correction → home progression.';
+
+					const expectedOutcome = isElectroSection
+						? 'Expected outcome: pain reduction, tissue relaxation, and better tolerance for active rehabilitation.'
+						: 'Expected outcome: improved daily function, stronger movement control, and safer long-term recovery.';
+
+					const metaWrap = document.createElement('div');
+					metaWrap.className = 'treatment-meta mt-3 space-y-2';
+
+					const tagsWrap = document.createElement('div');
+					tagsWrap.className = 'flex flex-wrap gap-1.5';
+					bestForTags.forEach((tag) => {
+						const chip = document.createElement('span');
+						chip.className = 'inline-flex rounded-full border border-medicalBlue/20 bg-medicalIce px-2 py-1 text-[10px] font-semibold text-medicalBlue';
+						chip.textContent = tag;
+						tagsWrap.appendChild(chip);
+					});
+
+					const bestForLabel = document.createElement('p');
+					bestForLabel.className = 'text-[11px] font-semibold text-slate-700';
+					bestForLabel.textContent = 'Best for:';
+
+					const focusLine = document.createElement('p');
+					focusLine.className = 'text-[11px] leading-5 text-slate-600';
+					focusLine.textContent = sessionFocus;
+
+					const outcomeLine = document.createElement('p');
+					outcomeLine.className = 'text-[11px] leading-5 text-slate-600';
+					outcomeLine.textContent = expectedOutcome;
+
+					metaWrap.appendChild(bestForLabel);
+					metaWrap.appendChild(tagsWrap);
+					metaWrap.appendChild(focusLine);
+					metaWrap.appendChild(outcomeLine);
+
+					const readMoreBlock = item.querySelector('details.read-more');
+					if (readMoreBlock) {
+						readMoreBlock.insertAdjacentElement('beforebegin', metaWrap);
+					} else {
+						descriptionEl.insertAdjacentElement('afterend', metaWrap);
+					}
+				}
+			});
+
+			const readMoreBlocks = document.querySelectorAll('details.read-more');
+			readMoreBlocks.forEach((block) => {
+				const summary = block.querySelector('summary');
+				const content = block.querySelector('.read-more-content');
+				if (!summary) return;
+				summary.textContent = 'Read more';
+
+				if (!content) return;
+
+				let readLessBtn = block.querySelector('.read-less-btn');
+				if (!readLessBtn) {
+					readLessBtn = document.createElement('button');
+					readLessBtn.type = 'button';
+					readLessBtn.className = 'read-less-btn';
+					readLessBtn.textContent = 'Read less';
+					content.insertAdjacentElement('afterend', readLessBtn);
+				}
+
+				readLessBtn.addEventListener('click', () => {
+					block.open = false;
+				});
+			});
 		</script>
 	</body>
 </html>
