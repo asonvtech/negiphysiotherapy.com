@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 - Page Not Found | Negi Physiotherapy Clinic</title>
+		<meta name="theme-color" content="#1fa58f" />
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						fontFamily: {
+							sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+						},
+						colors: {
+							medicalBlue: "#0b4f8a",
+							medicalBlueLight: "#1d71ba",
+							medicalGreen: "#1fa58f",
+							medicalMint: "#e8fbf6",
+							medicalIce: "#edf6ff",
+						},
+						boxShadow: {
+							soft: "0 10px 30px rgba(15, 76, 129, 0.10)",
+						},
+					},
+				},
+			};
+		</script>
+		<style>
+			:root {
+				--theme-blue: #0b4f8a;
+				--theme-blue-light: #1d71ba;
+				--theme-green: #1fa58f;
+				--theme-green-deep: #167f6e;
+				--theme-ice: #edf6ff;
+				--theme-mint: #e8fbf6;
+			}
+
+			body {
+				font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+				background:
+					radial-gradient(circle at 8% 0%, rgba(11, 79, 138, 0.11), transparent 24%),
+					radial-gradient(circle at 92% 18%, rgba(31, 165, 143, 0.11), transparent 26%),
+					linear-gradient(180deg, #ffffff 0%, #fbfdff 40%, #ffffff 100%),
+					#ffffff;
+				color: #334155;
+			}
+
+			.not-found-card {
+				position: relative;
+				overflow: hidden;
+				border: 1px solid rgba(148, 163, 184, 0.22);
+				border-radius: 1rem;
+				background:
+					linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.92)),
+					radial-gradient(circle at 90% 10%, rgba(11, 79, 138, 0.08), transparent 35%);
+				box-shadow: 0 18px 34px rgba(11, 79, 138, 0.12);
+			}
+
+			.not-found-card::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				height: 4px;
+				width: 100%;
+				background: linear-gradient(90deg, var(--theme-blue), var(--theme-blue-light), var(--theme-green));
+			}
+
+			.badge {
+				background: linear-gradient(90deg, rgba(11, 79, 138, 0.12), rgba(31, 165, 143, 0.14));
+				color: var(--theme-blue);
+			}
+
+			.btn-primary {
+				background: linear-gradient(90deg, var(--theme-blue), var(--theme-green));
+			}
+
+			.btn-primary:hover {
+				background: linear-gradient(90deg, #0a4578, var(--theme-green-deep));
+			}
+		</style>
+	</head>
+	<body class="min-h-screen text-slate-700 antialiased">
+		<main class="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center px-6 py-10 text-center">
+			<section class="not-found-card w-full max-w-2xl p-8 sm:p-10">
+				<p class="badge mb-5 inline-flex rounded-full px-4 py-1 text-sm font-semibold">Negi Physiotherapy Clinic · 404</p>
+				<h1 class="mb-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Page not found</h1>
+				<p class="mx-auto mb-8 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+					This link doesn’t match any active page right now. You can continue from the homepage or go back to your previous page.
+				</p>
+				<div class="flex flex-wrap items-center justify-center gap-3">
+					<a
+						href="/"
+						class="btn-primary rounded-lg px-5 py-3 text-sm font-semibold text-white shadow-soft transition focus:outline-none focus:ring-2 focus:ring-medicalBlueLight focus:ring-offset-2"
+					>
+						Go to Home
+					</a>
+					<button
+						type="button"
+						onclick="window.history.back()"
+						class="rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
+					>
+						Go Back
+					</button>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			if (window.location.pathname !== '/404' && window.location.pathname !== '/404/') {
+				window.history.replaceState({}, '', '/404');
+			}
+		</script>
+	</body>
+</html>
