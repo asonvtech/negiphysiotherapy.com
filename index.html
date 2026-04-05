@@ -1,1608 +1,1028 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Negi Physiotherapy Clinic | Kotdwara</title>
-    <meta
-      name="description"
-      content="Negi Physiotherapy Clinic in Kotdwara — expert care for pain relief, post-surgery rehab, sports injuries, and neuro rehabilitation."
-    />
-    <style>
-      :root {
-        /* Aligned with existing app theme tokens */
-        --background: #ffffff;
-        --foreground: #030213;
-        --card: #ffffff;
-        --muted: #ececf0;
-        --muted-foreground: #717182;
-        --accent: #e9ebef;
-        --border: rgba(3, 2, 19, 0.12);
-
-        /* Teal/Cyan gradients used across current app screens */
-        --brand-900: #0f172a;   /* slate-950 */
-        --brand-700: #0f766e;   /* teal-700 */
-        --brand-600: #0d9488;   /* teal-600 */
-        --brand-500: #14b8a6;   /* teal-500 */
-        --brand-cyan: #0891b2;  /* cyan-600 */
-        --brand-cyan-700: #0e7490;
-        --brand-soft: #ecfeff;
-
-        --radius-lg: 20px;
-        --radius-md: 14px;
-        --radius-sm: 10px;
-        --shadow-soft: 0 10px 30px rgba(3, 2, 19, 0.08);
-        --shadow-strong: 0 20px 50px rgba(8, 145, 178, 0.18);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-        background:
-          radial-gradient(circle at 0% 0%, rgba(20, 184, 166, 0.08), transparent 38%),
-          radial-gradient(circle at 100% 10%, rgba(8, 145, 178, 0.08), transparent 34%),
-          var(--background);
-        color: var(--foreground);
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(18px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes softFloat {
-        0%,
-        100% {
-          transform: translateY(0) scale(1.1);
-        }
-        50% {
-          transform: translateY(-10px) scale(1.1);
-        }
-      }
-
-      .container {
-        width: min(1140px, 92%);
-        margin: 0 auto;
-      }
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        backdrop-filter: blur(12px);
-        background: rgba(255, 255, 255, 0.74);
-        border-bottom: 1px solid rgba(3, 2, 19, 0.08);
-        box-shadow: 0 8px 24px rgba(3, 2, 19, 0.05);
-      }
-
-      .topbar-inner {
-        min-height: 72px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 700;
-      }
-
-      .brand-mark {
-        width: 44px;
-        height: 44px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        background: #fff;
-        border: 1px solid rgba(15, 118, 110, 0.22);
-        box-shadow: 0 4px 10px rgba(3, 2, 19, 0.12);
-      }
-
-      .brand-mark img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-
-      .nav-actions {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .hero {
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(145deg, #f6fffd 0%, #f3fbff 52%, #ffffff 100%);
-      }
-
-      .hero::before,
-      .hero::after {
-        content: "";
-        position: absolute;
-        border-radius: 999px;
-        pointer-events: none;
-      }
-
-      .hero::before {
-        width: 540px;
-        height: 540px;
-        top: -230px;
-        right: -120px;
-        background: radial-gradient(circle, rgba(20, 184, 166, 0.24), rgba(20, 184, 166, 0));
-      }
-
-      .hero::after {
-        width: 420px;
-        height: 420px;
-        left: -170px;
-        bottom: -210px;
-        background: radial-gradient(circle, rgba(8, 145, 178, 0.2), rgba(8, 145, 178, 0));
-      }
-
-      .hero-grid {
-        position: relative;
-        z-index: 1;
-        padding: 88px 0 64px;
-        display: grid;
-        grid-template-columns: 1.12fr 1fr;
-        gap: 32px;
-        align-items: center;
-      }
-
-      .hero-content {
-        display: grid;
-        gap: 0;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 9px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(13, 148, 136, 0.24);
-        background: rgba(236, 254, 255, 0.9);
-        color: var(--brand-700);
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      h1 {
-        margin: 14px 0 16px;
-        font-size: clamp(30px, 4vw, 52px);
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-      }
-
-      .gradient-text {
-        background: linear-gradient(90deg, var(--brand-700), var(--brand-cyan));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .lead {
-        margin: 0;
-        color: var(--muted-foreground);
-        font-size: 16.5px;
-        line-height: 1.75;
-        max-width: 62ch;
-      }
-
-      .hero-highlights {
-        margin: 18px 0 0;
-        padding: 0;
-        list-style: none;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        max-width: 660px;
-      }
-
-      .hero-highlight {
-        border: 1px solid rgba(13, 148, 136, 0.2);
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.8);
-        font-size: 13.5px;
-        color: #0f172a;
-        font-weight: 600;
-        padding: 10px 12px;
-      }
-
-      .hero-ctas {
-        margin-top: 24px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .hero-actions {
-        margin-top: 2px;
-      }
-
-      .cta-subtext {
-        margin-top: 12px;
-        font-size: 13px;
-        color: #0f766e;
-        font-weight: 600;
-      }
-
-      .availability-pill {
-        margin-top: 14px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #0e7490;
-        background: rgba(224, 242, 254, 0.7);
-        border: 1px solid rgba(14, 116, 144, 0.24);
-      }
-
-      .hero-proof {
-        margin-top: 18px;
-        border: 1px solid rgba(13, 148, 136, 0.16);
-        background: rgba(255, 255, 255, 0.66);
-        border-radius: 16px;
-        padding: 14px;
-        box-shadow: 0 10px 26px rgba(3, 2, 19, 0.06);
-      }
-
-      .btn {
-        position: relative;
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border: 1px solid transparent;
-        border-radius: 12px;
-        padding: 12px 18px;
-        font-size: 15px;
-        font-weight: 600;
-        transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-        cursor: pointer;
-      }
-
-      .btn:hover {
-        transform: translateY(-1px);
-      }
-
-      .card,
-      .stat,
-      .trust-chip,
-      .service-card,
-      .content-card,
-      .process-card,
-      .outcome-card {
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-      }
-
-      .card:hover,
-      .stat:hover,
-      .service-card:hover,
-      .content-card:hover,
-      .process-card:hover,
-      .outcome-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 14px 30px rgba(3, 2, 19, 0.12);
-      }
-
-      .btn-primary {
-        color: #fff;
-        background: linear-gradient(135deg, var(--brand-700), var(--brand-cyan-700));
-        box-shadow: var(--shadow-strong);
-      }
-
-      .btn-primary::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.32) 50%, transparent 100%);
-        transform: translateX(-120%);
-        transition: transform 0.65s ease;
-      }
-
-      .btn-primary:hover::after {
-        transform: translateX(120%);
-      }
-
-      .btn-secondary {
-        color: var(--foreground);
-        border-color: var(--border);
-        background: #fff;
-      }
-
-      .quick-stats {
-        margin-top: 14px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
-      }
-
-      .quick-stats-title {
-        margin-top: 8px;
-        margin-bottom: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #0f766e;
-      }
-
-      .trust-strip {
-        margin-top: 4px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .trust-chip {
-        border: 1px solid rgba(13, 148, 136, 0.2);
-        border-radius: 999px;
-        padding: 8px 12px;
-        font-size: 13px;
-        color: #0f766e;
-        background: rgba(236, 254, 255, 0.75);
-      }
-
-      .stat {
-        border: 1px solid var(--border);
-        border-radius: var(--radius-sm);
-        background: #fff;
-        padding: 14px;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .stat strong {
-        font-size: 22px;
-        display: block;
-      }
-
-      .stat span {
-        color: var(--muted-foreground);
-        font-size: 13px;
-      }
-
-      .stat .stat-note {
-        display: block;
-        margin-top: 4px;
-        font-size: 12px;
-        color: #0f766e;
-        font-weight: 600;
-      }
-
-      .hero-card {
-        display: block;
-        width: 100%;
-      }
-
-      .hero-doctor {
-        display: grid;
-        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-        align-items: stretch;
-        width: 100%;
-        gap: 0;
-        border-radius: 28px;
-        overflow: hidden;
-        border: 1px solid rgba(13, 148, 136, 0.22);
-        box-shadow: 0 24px 54px rgba(3, 2, 19, 0.15);
-        background: linear-gradient(160deg, #053546, #0f766e 42%, #0891b2);
-        margin: 0;
-      }
-
-      .hero-doctor-photo-wrap {
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        border: 0;
-        box-shadow: none;
-        background:
-          radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.26), transparent 55%),
-          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.06));
-      }
-
-      .hero-doctor-photo {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center bottom;
-        transform: scale(1.58);
-        transform-origin: center center;
-        animation: softFloat 6s ease-in-out infinite;
-        display: block;
-        filter: drop-shadow(0 20px 28px rgba(0, 0, 0, 0.25));
-      }
-
-      .hero-doctor-profile {
-        width: 100%;
-        border-radius: 0;
-        padding: 26px 22px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(247, 252, 255, 0.95));
-        border-left: 1px solid rgba(13, 148, 136, 0.18);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-        color: #0f172a;
-      }
-
-      .hero-doctor-profile h3 {
-        margin: 0;
-        font-size: 32px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-      }
-
-      .hero-doctor-profile .doctor-sub {
-        margin: 8px 0 14px;
-        font-size: 14px;
-        font-weight: 700;
-        color: #0f766e;
-      }
-
-      .hero-doctor-profile p {
-        margin: 0;
-        color: #334155;
-        font-size: 14px;
-        line-height: 1.7;
-      }
-
-      .doctor-tags {
-        margin-top: 12px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .doctor-tag {
-        border-radius: 999px;
-        padding: 7px 11px;
-        border: 1px solid rgba(15, 118, 110, 0.24);
-        background: rgba(236, 254, 255, 0.82);
-        color: #0f766e;
-        font-size: 12.5px;
-        font-weight: 600;
-      }
-
-      .doctor-meta-grid {
-        margin-top: 12px;
-        display: grid;
-        gap: 8px;
-      }
-
-      .doctor-meta-item {
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        border-left: 4px solid #0d9488;
-        font-size: 13.5px;
-        color: #1f2937;
-      }
-
-      .doctor-cta-note {
-        margin-top: 10px;
-        font-size: 12.5px;
-        color: #0f766e;
-        font-weight: 600;
-      }
-
-      .hero-doctor-footer {
-        margin-top: 14px;
-        border-top: 1px dashed rgba(13, 148, 136, 0.32);
-        padding-top: 12px;
-        display: grid;
-        gap: 10px;
-      }
-
-      .hero-doctor-footer-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-
-      .hero-doctor-mini {
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        border-radius: 10px;
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.9);
-      }
-
-      .hero-doctor-mini small {
-        display: block;
-        color: #64748b;
-        font-size: 12px;
-      }
-
-      .hero-doctor-mini strong {
-        display: block;
-        margin-top: 4px;
-        font-size: 13px;
-        color: #0f172a;
-      }
-
-      .hero-doctor-footer .btn {
-        width: 100%;
-      }
-
-      .doctor-meta-item strong {
-        color: #0f172a;
-      }
-
-      .hero-doctor-meta strong {
-        display: block;
-        font-size: 18px;
-        line-height: 1.2;
-        margin-bottom: 3px;
-      }
-
-      .hero-doctor-meta span {
-        font-size: 13px;
-        opacity: 0.9;
-      }
-
-      .hero-card h3 {
-        margin-top: 0;
-        margin-bottom: 14px;
-        font-size: 23px;
-      }
-
-      .info-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        gap: 12px;
-      }
-
-      .info-list li {
-        padding: 12px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-      }
-
-      main > section {
-        position: relative;
-        padding: 72px 0;
-      }
-
-      main > section:nth-of-type(even) {
-        background: linear-gradient(180deg, rgba(236, 254, 255, 0.44), rgba(255, 255, 255, 0.82));
-      }
-
-      .section-title {
-        margin: 0 0 12px;
-        font-size: clamp(26px, 3vw, 38px);
-        letter-spacing: -0.015em;
-        position: relative;
-        display: inline-block;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -8px;
-        width: 56px;
-        height: 4px;
-        border-radius: 999px;
-        background: linear-gradient(90deg, var(--brand-700), var(--brand-cyan));
-      }
-
-      .section-sub {
-        margin: 0 0 28px;
-        max-width: 65ch;
-        color: var(--muted-foreground);
-        line-height: 1.65;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .dual-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-
-      .list-card {
-        padding: 22px;
-      }
-
-      .list-card h3 {
-        margin: 0 0 12px;
-        font-size: 22px;
-      }
-
-      .numbered-list {
-        margin: 0;
-        padding-left: 20px;
-        color: #1f2937;
-        line-height: 1.72;
-      }
-
-      .numbered-list li {
-        margin-bottom: 4px;
-      }
-
-      .timing-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .timing-item {
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        background: rgba(255, 255, 255, 0.08);
-        padding: 10px;
-      }
-
-      .timing-item small {
-        display: block;
-        opacity: 0.9;
-      }
-
-      .card {
-        border: 1px solid var(--border);
-        border-radius: var(--radius-md);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 252, 252, 0.92));
-        box-shadow: 0 10px 26px rgba(3, 2, 19, 0.08);
-        backdrop-filter: blur(2px);
-      }
-
-      .service-card {
-        padding: 18px;
-      }
-
-      .service-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        display: grid;
-        place-items: center;
-        font-size: 20px;
-        background: linear-gradient(140deg, #e6fffa, #dff7ff);
-        margin-bottom: 12px;
-      }
-
-      .service-card h4 {
-        margin: 0 0 8px;
-        font-size: 18px;
-      }
-
-      .service-card p {
-        margin: 0;
-        color: var(--muted-foreground);
-        line-height: 1.55;
-        font-size: 14px;
-      }
-
-      .split {
-        display: grid;
-        gap: 20px;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .process-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .process-card {
-        padding: 18px;
-      }
-
-      .step-no {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        place-items: center;
-        border-radius: 10px;
-        color: #fff;
-        font-weight: 700;
-        margin-bottom: 10px;
-        background: linear-gradient(140deg, var(--brand-700), var(--brand-cyan));
-      }
-
-      .process-card h4 {
-        margin: 0 0 8px;
-      }
-
-      .process-card p {
-        margin: 0;
-        color: var(--muted-foreground);
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .outcome-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .outcome-card {
-        padding: 18px;
-      }
-
-      .outcome-card strong {
-        display: block;
-        font-size: 26px;
-        line-height: 1;
-        margin-bottom: 8px;
-        color: #0f766e;
-      }
-
-      .outcome-card p {
-        margin: 0;
-        color: var(--muted-foreground);
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .content-grid-3 {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .content-card {
-        padding: 18px;
-      }
-
-      .content-card h4 {
-        margin: 0 0 8px;
-        font-size: 17px;
-      }
-
-      .content-card p,
-      .content-card ul {
-        margin: 0;
-        color: var(--muted-foreground);
-        line-height: 1.7;
-        font-size: 14px;
-      }
-
-      .content-card ul {
-        padding-left: 18px;
-      }
-
-      .highlight {
-        padding: 24px;
-      }
-
-      .highlight ul {
-        margin: 0;
-        padding-left: 20px;
-        color: var(--muted-foreground);
-        line-height: 1.8;
-      }
-
-      .testimonial {
-        padding: 26px;
-        position: relative;
-      }
-
-      .testimonial p {
-        margin: 0;
-        line-height: 1.7;
-        color: #1f2937;
-      }
-
-      .testimonial .author {
-        margin-top: 14px;
-        color: var(--muted-foreground);
-        font-size: 14px;
-      }
-
-      .cta {
-        padding: 36px;
-        border-radius: var(--radius-lg);
-        background: linear-gradient(145deg, #032f3a, var(--brand-700), var(--brand-cyan));
-        color: #fff;
-      }
-
-      .cta h3 {
-        margin: 0;
-        font-size: clamp(24px, 3vw, 34px);
-      }
-
-      .cta p {
-        margin: 10px 0 0;
-        color: rgba(255, 255, 255, 0.88);
-        line-height: 1.7;
-      }
-
-      .cta .hero-ctas {
-        margin-top: 18px;
-      }
-
-      .cta .btn-secondary {
-        background: rgba(255, 255, 255, 0.95);
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-
-      .doctor-panel {
-        padding: 28px;
-        border-radius: var(--radius-lg);
-        color: #fff;
-        background: linear-gradient(135deg, var(--brand-900), var(--brand-700), var(--brand-cyan-700));
-        box-shadow: var(--shadow-strong);
-      }
-
-      .doctor-panel h3 {
-        margin: 0 0 8px;
-        font-size: 28px;
-      }
-
-      .doctor-panel p {
-        margin: 0;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.7;
-      }
-
-      .faq-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
-
-      .faq-item {
-        padding: 16px 18px;
-      }
-
-      .faq-item summary {
-        cursor: pointer;
-        font-weight: 600;
-        list-style: none;
-      }
-
-      .faq-item summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .faq-item summary::after {
-        content: "+";
-        float: right;
-        font-size: 18px;
-        color: var(--brand-700);
-      }
-
-      .faq-item[open] summary::after {
-        content: "−";
-      }
-
-      .faq-item p {
-        margin: 10px 0 0;
-        color: var(--muted-foreground);
-        line-height: 1.65;
-      }
-
-      .map-card {
-        margin-top: 20px;
-        overflow: hidden;
-      }
-
-      .map-frame {
-        width: 100%;
-        height: 380px;
-        border: 0;
-        display: block;
-      }
-
-      .social-row {
-        margin-top: 14px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .social-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 14px;
-        border-radius: 999px;
-        background: #fff;
-        border: 1px solid var(--border);
-        font-size: 14px;
-        font-weight: 600;
-      }
-
-      .social-link:hover {
-        transform: translateY(-1px);
-      }
-
-      .contact-item {
-        padding: 18px;
-      }
-
-      .contact-item small {
-        color: var(--muted-foreground);
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      footer {
-        padding: 30px 0 42px;
-        color: var(--muted-foreground);
-        border-top: 1px solid var(--border);
-        text-align: center;
-        font-size: 14px;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(22px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-
-      .reveal.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .service-grid,
-        .dual-list,
-        .process-grid,
-        .outcome-grid,
-        .content-grid-3,
-        .split,
-        .faq-grid,
-        .contact-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .quick-stats {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .hero-grid {
-          padding-top: 64px;
-        }
-
-        .hero-proof {
-          padding: 12px;
-        }
-
-        .hero-highlights {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-doctor-photo-wrap {
-          width: 100%;
-          height: 360px;
-        }
-
-        .hero-doctor {
-          grid-template-columns: 1fr;
-          gap: 0;
-        }
-
-        .hero-card {
-          border-radius: 20px;
-        }
-
-        .hero-doctor-profile {
-          border-left: 0;
-          border-top: 1px solid rgba(13, 148, 136, 0.18);
-          padding: 18px;
-        }
-
-        .hero-doctor-footer-row {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-doctor-profile h3 {
-          font-size: 28px;
-        }
-      }
-
-      @media (max-width: 620px) {
-        .quick-stats {
-          grid-template-columns: 1fr;
-        }
-
-        .topbar-inner {
-          min-height: 66px;
-        }
-
-        .hero-doctor-photo-wrap {
-          height: 310px;
-        }
-
-        .hero-doctor-photo {
-          transform: scale(1.42);
-        }
-
-        .hero-doctor-profile h3 {
-          font-size: 24px;
-        }
-
-        .hero .badge,
-        .hero h1,
-        .hero .lead,
-  .hero .hero-highlights,
-        .hero .hero-ctas,
-        .hero .trust-strip,
-        .hero .quick-stats,
-        .hero-card,
-        .reveal {
-          animation: none;
-          transition: none;
-          opacity: 1;
-          transform: none;
-        }
-      }
-
-      .hero .badge {
-        animation: fadeUp 0.5s ease both;
-      }
-
-      .hero h1 {
-        animation: fadeUp 0.65s ease both;
-      }
-
-      .hero .lead {
-        animation: fadeUp 0.8s ease both;
-      }
-
-      .hero .hero-ctas,
-      .hero .trust-strip,
-      .hero .quick-stats,
-      .hero-card {
-        animation: fadeUp 0.95s ease both;
-      }
-    </style>
-  </head>
-  <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a href="#home" class="brand">
-          <span class="brand-mark">
-            <img src="./public/logo.jpg" alt="Negi Physiotherapy Clinic Logo" />
-          </span>
-          <span>Negi Physiotherapy Clinic</span>
-        </a>
-        <nav class="nav-actions">
-          <a class="btn btn-secondary" href="https://www.facebook.com/negi2403/" target="_blank" rel="noreferrer">📘 Facebook</a>
-          <a class="btn btn-secondary" href="tel:8218652502">📞 Call Now</a>
-          <a class="btn btn-primary" href="#book">Book Consultation</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="home">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-content">
-            <span class="badge">🏥 Kotdwara's Trusted Ortho &amp; Neuro Physiotherapy Clinic</span>
-            <h1>
-              Pain Se Recovery Tak,
-              <span class="gradient-text">Structured Physiotherapy Care</span>
-              Jo Aapko Wapas Active Banaye
-            </h1>
-            <p class="lead">
-              Neck pain, back pain, frozen shoulder, sports injury, stroke rehab aur post-surgery recovery ke liye
-              evidence-based treatment plans milte hain — step-by-step assessment, targeted therapy aur practical
-              home guidance ke saath.
-            </p>
-
-            <ul class="hero-highlights">
-              <li class="hero-highlight">✅ Detailed root-cause assessment before treatment</li>
-              <li class="hero-highlight">✅ One-to-one guided therapy sessions</li>
-              <li class="hero-highlight">✅ Electrotherapy + manual therapy protocols</li>
-              <li class="hero-highlight">✅ Clinic services available in Kotdwara, Uttarakhand</li>
-            </ul>
-
-            <div class="hero-actions">
-              <div class="hero-ctas">
-                <a class="btn btn-primary" href="tel:8218652502">📱 Call Now: 82186 52502</a>
-                <a class="btn btn-secondary" href="https://wa.me/918218652502" target="_blank" rel="noreferrer">💬 Book on WhatsApp</a>
-                <a class="btn btn-secondary" href="#book">📅 Book Consultation</a>
-              </div>
-
-              <p class="cta-subtext">Same-day slot availability depends on current patient flow.</p>
-              <div class="availability-pill">🕒 Mon–Sat Consultation • Summer &amp; Winter Timings Available</div>
-            </div>
-
-            <div class="hero-proof">
-              <div class="trust-strip">
-                <span class="trust-chip">✅ Ortho &amp; Neuro Focused Care</span>
-                <span class="trust-chip">✅ Advanced Electrotherapy Setup</span>
-                <span class="trust-chip">✅ Personalized Rehab Roadmap</span>
-              </div>
-
-              <p class="quick-stats-title">Trusted Care in Kotdwara</p>
-              <div class="quick-stats">
-                <div class="stat">
-                  <strong>16+ yrs</strong>
-                  <span>Clinical Experience</span>
-                  <small class="stat-note">Serving Kotdwara patients</small>
-                </div>
-                <div class="stat">
-                  <strong>5000+</strong>
-                  <span>Sessions Delivered</span>
-                  <small class="stat-note">At Kotdwara clinic</small>
-                </div>
-                <div class="stat">
-                  <strong>1200+</strong>
-                  <span>Patients Supported</span>
-                  <small class="stat-note">From Kotdwara region</small>
-                </div>
-                <div class="stat">
-                  <strong>95%</strong>
-                  <span>Patient Satisfaction</span>
-                  <small class="stat-note">Based on follow-up feedback</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <aside class="hero-card">
-            <div class="hero-doctor">
-              <div class="hero-doctor-photo-wrap">
-                <img
-                  class="hero-doctor-photo"
-                  src="./public/doctor.png"
-                  alt="Doctor"
-                />
-              </div>
-
-              <article class="hero-doctor-profile">
-                <h3>Dr. Mangesh Negi</h3>
-                <div class="doctor-sub">BPT, MPT • Ortho &amp; Neuro Rehabilitation Specialist</div>
-                <p>
-                  16+ years ke clinical experience ke saath Dr. Negi diagnosis-led physiotherapy plans par focus
-                  karte hain — taaki pain relief, mobility restoration aur long-term functional recovery measurable
-                  tareeke se achieve ho.
-                </p>
-                <div class="doctor-tags">
-                  <span class="doctor-tag">Manual Therapy</span>
-                  <span class="doctor-tag">Neuro Rehab</span>
-                  <span class="doctor-tag">Posture Correction</span>
-                </div>
-                <div class="doctor-meta-grid">
-                  <div class="doctor-meta-item"><strong>Consultation Fee:</strong> ₹400</div>
-                  <div class="doctor-meta-item"><strong>Timings (Summer):</strong> 9:00 AM - 1:00 PM, 4:00 PM - 8:00 PM</div>
-                  <div class="doctor-meta-item"><strong>Timings (Winter):</strong> 10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM</div>
-                </div>
-                <div class="doctor-cta-note">📍 In-clinic consultations only at Kotdwara, Uttarakhand.</div>
-                <div class="hero-doctor-footer">
-                  <div class="hero-doctor-footer-row">
-                    <div class="hero-doctor-mini">
-                      <small>First Consultation</small>
-                      <strong>~20-30 min assessment</strong>
-                    </div>
-                    <div class="hero-doctor-mini">
-                      <small>Best For</small>
-                      <strong>Pain, Stiffness, Post-op Rehab</strong>
-                    </div>
-                  </div>
-                  <a class="btn btn-primary" href="tel:8218652502">📞 Speak to Clinic Team</a>
-                </div>
-              </article>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Specialized Physiotherapy Services</h2>
-          <p class="section-sub">
-            We combine clinical expertise with personalized treatment planning to restore movement, reduce pain,
-            and help you get back to your daily routine with confidence. Each session includes problem-specific
-            protocols, practical home advice, and progress tracking to ensure measurable outcomes.
-          </p>
-
-          <div class="service-grid">
-            <article class="card service-card">
-              <div class="service-icon">🦴</div>
-              <h4>Orthopedic Rehab</h4>
-              <p>Targeted treatment for back pain, neck pain, arthritis, joint stiffness, and periarthritis.</p>
-            </article>
-            <article class="card service-card">
-              <div class="service-icon">🏃</div>
-              <h4>Sports Injury Care</h4>
-              <p>Performance-focused rehab for sprains, strains, overuse injuries, and safe return-to-sport.</p>
-            </article>
-            <article class="card service-card">
-              <div class="service-icon">🧠</div>
-              <h4>Neuro Physiotherapy</h4>
-              <p>Structured rehabilitation support for stroke recovery, mobility, balance, and coordination.</p>
-            </article>
-            <article class="card service-card">
-              <div class="service-icon">🏥</div>
-              <h4>Post Surgery Rehab</h4>
-              <p>Progressive therapy plans to reduce pain, improve ROM, and rebuild strength after surgery.</p>
-            </article>
-            <article class="card service-card">
-              <div class="service-icon">🫁</div>
-              <h4>Cardio-Pulmonary Physio</h4>
-              <p>Evidence-based breathing and endurance programs for cardio-respiratory rehabilitation.</p>
-            </article>
-            <article class="card service-card">
-              <div class="service-icon">🏠</div>
-              <h4>Clinic-Based Follow-up Care</h4>
-              <p>All follow-up sessions are currently managed at our Kotdwara, Uttarakhand clinic.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Why Choose Negi Physiotherapy</h2>
-          <p class="section-sub">
-            Our care model combines accurate assessment, focused treatment, and practical recovery guidance so
-            patients can improve safely and consistently.
-          </p>
-          <div class="content-grid-3">
-            <article class="card content-card">
-              <h4>Thorough Assessment</h4>
-              <p>Root-cause evaluation with a clear, personalized treatment plan.</p>
-            </article>
-            <article class="card content-card">
-              <h4>One-to-One Attention</h4>
-              <p>Focused sessions with manual therapy, electrotherapy, and guided exercises.</p>
-            </article>
-            <article class="card content-card">
-              <h4>Trackable Progress</h4>
-              <p>Practical home advice and regular progress checks for faster recovery.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Expected Recovery Outcomes</h2>
-          <p class="section-sub">
-            Most patients report clear improvements in pain, mobility, and confidence when sessions are followed consistently.
-          </p>
-          <div class="outcome-grid">
-            <article class="card outcome-card">
-              <strong>01</strong>
-              <p>Reduced pain intensity and better tolerance during daily movement.</p>
-            </article>
-            <article class="card outcome-card">
-              <strong>02</strong>
-              <p>Improved joint range of motion and flexibility in affected areas.</p>
-            </article>
-            <article class="card outcome-card">
-              <strong>03</strong>
-              <p>Enhanced muscle strength, balance, and posture control.</p>
-            </article>
-            <article class="card outcome-card">
-              <strong>04</strong>
-              <p>Safer return to routine work, walking, and physical activity.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Available For & Electrotherapy Modalities</h2>
-          <p class="section-sub">
-            Comprehensive ortho and neuro rehabilitation support tailored to your condition and recovery stage.
-          </p>
-
-          <div class="dual-list">
-            <article class="card list-card">
-              <h3>Available For</h3>
-              <ol class="numbered-list">
-                <li>Frozen Shoulder</li>
-                <li>Cervical Pain & Vertigo</li>
-                <li>Low Back Pain (Slip Disc)</li>
-                <li>Arthritis (Knee / Hip Pain)</li>
-                <li>Post Fracture Rehabilitation</li>
-                <li>Tennis Elbow</li>
-                <li>Paralysis / Cerebral Palsy / Polio</li>
-                <li>Total Knee Replacement</li>
-                <li>Total Hip Replacement</li>
-                <li>Ligament Reconstruction</li>
-                <li>Spinal Surgeries</li>
-              </ol>
-            </article>
-
-            <article class="card list-card">
-              <h3>Electrotherapy Modalities</h3>
-              <ol class="numbered-list">
-                <li>Short Wave Diathermy (SWD)</li>
-                <li>Long Wave Diathermy (LWD)</li>
-                <li>Ultra Sound Therapy (UST)</li>
-                <li>Wax Therapy</li>
-                <li>Electrical Muscle Stimulation</li>
-                <li>TENS</li>
-                <li>Hot & Cold Therapy</li>
-                <li>Interferential Therapy (IFT)</li>
-                <li>Exercise Therapy</li>
-                <li>Cervical & Lumbar Traction</li>
-              </ol>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Before You Visit the Clinic</h2>
-          <p class="section-sub">
-            Carrying a few essentials helps us start your treatment faster and build an accurate, personalized rehab plan.
-          </p>
-          <div class="content-grid-3">
-            <article class="card content-card">
-              <h4>Bring Reports</h4>
-              <p>
-                Bring previous X-ray, MRI, surgery notes, prescriptions, and blood reports (if relevant).
-              </p>
-            </article>
-            <article class="card content-card">
-              <h4>Wear Comfortable Clothing</h4>
-              <p>
-                Choose loose, movement-friendly clothes so assessment and exercises can be done comfortably.
-              </p>
-            </article>
-            <article class="card content-card">
-              <h4>Share Full History</h4>
-              <ul>
-                <li>When pain started and what worsens or relieves it.</li>
-                <li>Any previous injury, surgery, or ongoing medicine.</li>
-                <li>Your work routine and activity goals.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container split">
-          <article class="card highlight">
-            <h3>Google Reviews & Patient Voices</h3>
-            <ul>
-              <li>Check live rating and latest comments directly on our Google Maps profile.</li>
-              <li>Follow clinic updates, rehab tips, and announcements on Facebook.</li>
-              <li>Real patient feedback helps new patients make confident decisions.</li>
-            </ul>
-            <div class="social-row">
-              <a class="social-link" href="https://www.google.com/maps/place/Negi+Physiotherapy+clinic+ortho+and+neuro+rehab+center/@29.7467433,78.5216937,17z/data=!3m1!4b1!4m6!3m5!1s0x39097dab340f647d:0x59f6120e4b5f503b!8m2!3d29.7467433!4d78.5216937!16s%2Fg%2F11fq9xm3bf?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">⭐ View Google Reviews</a>
-              <a class="social-link" href="https://www.facebook.com/negi2403/" target="_blank" rel="noreferrer">📘 Visit Facebook Page</a>
-            </div>
-          </article>
-
-          <article class="card testimonial">
-            <p>
-              “I visited for severe shoulder pain and saw visible improvement in mobility within a few sessions.
-              The treatment plan was clear, practical, and very supportive.”
-            </p>
-            <div class="author">— Patient Feedback, Kotdwara</div>
-          </article>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Our Recovery Process</h2>
-          <p class="section-sub">
-            Every patient gets a structured, milestone-based care plan to ensure safer, faster, and sustainable recovery.
-          </p>
-          <div class="process-grid">
-            <article class="card process-card">
-              <div class="step-no">1</div>
-              <h4>Detailed Assessment</h4>
-              <p>We evaluate pain, posture, movement limits, and history before designing your protocol.</p>
-            </article>
-            <article class="card process-card">
-              <div class="step-no">2</div>
-              <h4>Diagnosis-Based Plan</h4>
-              <p>Condition-specific treatment mix of manual therapy, electrotherapy, and guided exercise.</p>
-            </article>
-            <article class="card process-card">
-              <div class="step-no">3</div>
-              <h4>Progress Monitoring</h4>
-              <p>Session-wise tracking on pain, range of motion, strength, and functional movement goals.</p>
-            </article>
-            <article class="card process-card">
-              <div class="step-no">4</div>
-              <h4>Home Care Guidance</h4>
-              <p>Simple exercise and activity advice to maintain results and prevent recurrence.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container split">
-          <article class="doctor-panel">
-            <h3>Dr. Mangesh Negi</h3>
-            <p><strong>BPT, MPT</strong> • Ortho & Neuro Rehabilitation Specialist</p>
-            <p style="margin-top: 12px;">
-              With 16+ years of clinical practice, Dr. Negi focuses on evidence-based,
-              diagnosis-led physiotherapy plans for pain relief, mobility restoration,
-              and long-term functional recovery in Kotdwara, Uttarakhand.
-            </p>
-            <p style="margin-top: 12px;">
-              Consultation Fee: <strong>₹400</strong><br />
-              Timings: Summer 9:00 AM - 1:00 PM, 4:00 PM - 8:00 PM<br />
-              Winter 10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM
-            </p>
-          </article>
-
-          <article class="card highlight">
-            <h3>Conditions We Handle Most</h3>
-            <ul>
-              <li>Frozen shoulder, cervical pain, slip disc, and postural disorders.</li>
-              <li>Arthritis-related knee/hip pain and post fracture stiffness.</li>
-              <li>Post-surgery rehab: knee replacement, hip replacement, ligament reconstruction.</li>
-              <li>Neuro rehab support for paralysis and stroke-related mobility limitations.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Frequently Asked Questions</h2>
-          <div class="faq-grid">
-            <details class="card faq-item">
-              <summary>How many sessions are usually needed?</summary>
-              <p>It depends on the condition severity and duration. After assessment, a clear session plan is shared with expected milestones.</p>
-            </details>
-            <details class="card faq-item">
-              <summary>Do you provide treatment for post surgery patients?</summary>
-              <p>Yes. We provide progressive post-operative rehabilitation for spine, knee, hip, and ligament-related surgeries.</p>
-            </details>
-            <details class="card faq-item">
-              <summary>Is electrotherapy available at the clinic?</summary>
-              <p>Yes, modalities like SWD, LWD, UST, IFT, TENS, traction, and more are available as clinically indicated.</p>
-            </details>
-            <details class="card faq-item">
-              <summary>Do you guide home exercises?</summary>
-              <p>Absolutely. Home programs are provided to accelerate recovery and reduce chances of pain recurrence.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section id="book">
-        <div class="container cta">
-          <h3>Start Your Recovery Journey Today</h3>
-          <p>
-            Book a consultation at Negi Physiotherapy Clinic and get a structured treatment plan focused on
-            pain relief, mobility, and long-term recovery. Early treatment often shortens recovery time and
-            prevents chronic stiffness or recurring pain.
-          </p>
-          <div class="hero-ctas">
-            <a class="btn btn-secondary" href="tel:8218652502">Call: 97196 04206</a>
-            <a
-              class="btn btn-secondary"
-              href="https://www.google.com/maps/search/?api=1&query=Negi+Physiotherapy+Clinic+Kotdwara"
-              target="_blank"
-              rel="noreferrer"
-              >Get Directions</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="container">
-          <h2 class="section-title">Contact & Location</h2>
-          <p class="section-sub">
-            Easy to reach from central Kotdwara. Call before arriving for quick slot confirmation and reduced waiting time.
-          </p>
-          <div class="contact-grid">
-            <div class="card contact-item">
-              <small>Primary Contact</small>
-              <strong><a href="tel:8218652502">97196 04206</a></strong>
-            </div>
-            <div class="card contact-item">
-              <small>Address</small>
-              <strong>Malviya Udhyan, Near Gas Agency, Kotdwara, Uttarakhand</strong>
-            </div>
-            <div class="card contact-item">
-              <small>Clinic Timings</small>
-              <strong>Summer: 9 AM - 1 PM & 4 PM - 8 PM<br />Winter: 10 AM - 1 PM & 3 PM - 6 PM</strong>
-            </div>
-          </div>
-
-          <article class="card map-card">
-            <iframe
-              class="map-frame"
-              title="Negi Physiotherapy Clinic Location"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=29.7467433,78.5216937&z=17&output=embed"
-            ></iframe>
-          </article>
-
-          <div class="hero-ctas" style="margin-top: 14px;">
-            <a
-              class="btn btn-secondary"
-              href="https://www.google.com/maps/place/Negi+Physiotherapy+clinic+ortho+and+neuro+rehab+center/@29.7467433,78.5191188,17z/data=!3m1!4b1!4m6!3m5!1s0x39097dab340f647d:0x59f6120e4b5f503b!8m2!3d29.7467433!4d78.5216937!16s%2Fg%2F11fq9xm3bf?entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank"
-              rel="noreferrer"
-              >Open Exact Google Map Location</a
-            >
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        © 2026 Negi Physiotherapy Clinic • Professional Physiotherapy Care in Kotdwara
-      </div>
-    </footer>
-
-    <script>
-      (() => {
-        const revealTargets = document.querySelectorAll(
-          "main section .section-title, main section .section-sub, main section .card, .quick-stats .stat, .trust-chip"
-        );
-
-        revealTargets.forEach((node) => node.classList.add("reveal"));
-
-        if (window.matchMedia("(max-width: 620px)").matches) {
-          revealTargets.forEach((node) => node.classList.add("is-visible"));
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
-        );
-
-        revealTargets.forEach((node) => observer.observe(node));
-      })();
-    </script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Negi Physiotherapy Clinic – Ortho & Neuro Rehab Center</title>
+		<meta
+			name="description"
+			content="Negi Physiotherapy Clinic – Ortho & Neuro Rehab Center offers expert pain relief, neuro and orthopedic rehabilitation, home physiotherapy, and personalized recovery plans."
+		/>
+		<meta
+			name="keywords"
+			content="physiotherapy clinic, ortho rehab, neuro rehab, pain management, stroke recovery, home physiotherapy, Negi Physiotherapy Clinic"
+		/>
+		<meta name="theme-color" content="#1fa58f" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						fontFamily: {
+							sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+						},
+						colors: {
+							medicalBlue: "#0b4f8a",
+							medicalBlueLight: "#1d71ba",
+							medicalGreen: "#1fa58f",
+							medicalMint: "#e8fbf6",
+							medicalIce: "#edf6ff",
+						},
+						boxShadow: {
+							soft: "0 10px 30px rgba(15, 76, 129, 0.10)",
+						},
+					},
+				},
+			};
+		</script>
+		<style>
+			:root {
+				--theme-blue: #0b4f8a;
+				--theme-blue-light: #1d71ba;
+				--theme-green: #1fa58f;
+				--theme-green-deep: #167f6e;
+				--theme-ice: #edf6ff;
+				--theme-mint: #e8fbf6;
+				--theme-navy: #083a66;
+				--theme-glow: rgba(29, 113, 186, 0.2);
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				background:
+					radial-gradient(circle at 8% 0%, rgba(11, 79, 138, 0.11), transparent 24%),
+					radial-gradient(circle at 92% 18%, rgba(31, 165, 143, 0.11), transparent 26%),
+					linear-gradient(180deg, #ffffff 0%, #fbfdff 40%, #ffffff 100%),
+					#ffffff;
+				color: #334155;
+			}
+
+			::selection {
+				background: rgba(11, 79, 138, 0.2);
+				color: #0f172a;
+			}
+
+			.reveal {
+				opacity: 0;
+				transform: translateY(22px) scale(0.99);
+				transition:
+					opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+					transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+				transition-delay: var(--reveal-delay, 0ms);
+				will-change: opacity, transform;
+			}
+
+			.reveal.visible {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
+
+			@keyframes gradientFlow {
+				0% {
+					background-position: 0% 50%, 80% 10%;
+				}
+				50% {
+					background-position: 100% 50%, 20% 90%;
+				}
+				100% {
+					background-position: 0% 50%, 80% 10%;
+				}
+			}
+
+			@keyframes floatY {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-8px);
+				}
+			}
+
+			@keyframes fadeSlideUp {
+				from {
+					opacity: 0;
+					transform: translateY(24px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@keyframes pulseGlow {
+				0%,
+				100% {
+					box-shadow: 0 8px 20px rgba(11, 79, 138, 0.24);
+				}
+				50% {
+					box-shadow: 0 14px 30px rgba(11, 79, 138, 0.34);
+				}
+			}
+
+			@keyframes cardShine {
+				0% {
+					transform: translateX(-130%);
+					opacity: 0;
+				}
+				30% {
+					opacity: 0.4;
+				}
+				100% {
+					transform: translateX(130%);
+					opacity: 0;
+				}
+			}
+
+			.hero-overlay {
+				background:
+					linear-gradient(118deg, rgba(8, 58, 102, 0.9), rgba(11, 79, 138, 0.82) 45%, rgba(31, 165, 143, 0.72)),
+					radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.18), transparent 30%);
+				background-size: 170% 170%, 130% 130%;
+				animation: gradientFlow 14s ease-in-out infinite;
+			}
+
+			.section-wrap {
+				position: relative;
+				isolation: isolate;
+			}
+
+			.section-wrap::before {
+				/* content: ""; */
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 180px;
+				width: 180px;
+				border-radius: 9999px;
+				background: radial-gradient(circle, rgba(11, 79, 138, 0.2), transparent 70%);
+				pointer-events: none;
+				z-index: -1;
+			}
+
+			.section-wrap::after {
+				/* content: ""; */
+				position: absolute;
+				left: 0;
+				top: 22px;
+				height: 2px;
+				width: 130px;
+				border-radius: 9999px;
+				background: linear-gradient(90deg, rgba(11, 79, 138, 0.45), rgba(31, 165, 143, 0.2), transparent);
+				opacity: 0.65;
+				pointer-events: none;
+			}
+
+			.section-title {
+				position: relative;
+				display: inline-block;
+				padding-bottom: 0.55rem;
+			}
+
+			.section-title::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				height: 4px;
+				width: 78px;
+				border-radius: 9999px;
+				background: linear-gradient(90deg, var(--theme-blue), var(--theme-blue-light), var(--theme-green));
+			}
+
+			.section-title.centered::after {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.theme-card {
+				position: relative;
+				overflow: hidden;
+				border: 1px solid rgba(148, 163, 184, 0.18);
+				border-radius: 1rem;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.92));
+				transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+			}
+
+			.theme-card::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 45%;
+				background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+				pointer-events: none;
+				opacity: 0;
+			}
+
+			.theme-card:hover {
+				transform: translateY(-4px);
+				border-color: rgba(11, 79, 138, 0.28);
+				box-shadow: 0 18px 34px rgba(11, 79, 138, 0.16);
+			}
+
+			.theme-card:hover::after {
+				opacity: 1;
+				animation: cardShine 1s ease;
+			}
+
+			.theme-soft-panel {
+				background:
+					linear-gradient(135deg, rgba(237, 246, 255, 0.96), rgba(232, 251, 246, 0.94)),
+					radial-gradient(circle at 80% 20%, rgba(11, 79, 138, 0.07), transparent 45%);
+				border: 1px solid rgba(31, 165, 143, 0.24);
+			}
+
+			#services,
+			#testimonials {
+				background:
+					linear-gradient(180deg, rgba(237, 246, 255, 0.85), rgba(232, 251, 246, 0.7)),
+					#f6fbff;
+			}
+
+			header {
+				box-shadow: 0 8px 26px rgba(8, 58, 102, 0.08);
+			}
+
+			.nav-link {
+				position: relative;
+				transition: color 0.25s ease;
+			}
+
+			.nav-link::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -0.45rem;
+				height: 2px;
+				width: 0;
+				border-radius: 9999px;
+				background: linear-gradient(90deg, var(--theme-blue), var(--theme-green));
+				transition: width 0.28s ease;
+			}
+
+			.nav-link:hover::after {
+				width: 100%;
+			}
+
+			.theme-btn-primary {
+				background: linear-gradient(135deg, var(--theme-blue), var(--theme-blue-light));
+				border: 1px solid rgba(11, 79, 138, 0.16);
+				box-shadow: 0 8px 20px rgba(11, 79, 138, 0.24);
+				transition: transform 0.26s ease, box-shadow 0.26s ease, filter 0.26s ease;
+			}
+
+			.theme-btn-primary:hover {
+				background: linear-gradient(135deg, var(--theme-blue-light), var(--theme-blue));
+				transform: translateY(-2px) scale(1.01);
+				box-shadow: 0 14px 28px rgba(11, 79, 138, 0.3);
+				filter: saturate(1.06);
+			}
+
+			.theme-btn-outline {
+				border: 1px solid rgba(11, 79, 138, 0.65);
+				background: rgba(255, 255, 255, 0.9);
+			}
+
+			.theme-btn-outline:hover {
+				background: linear-gradient(135deg, rgba(237, 246, 255, 0.95), rgba(232, 251, 246, 0.95));
+			}
+
+			.theme-btn-whatsapp {
+				background: linear-gradient(135deg, #18b468, #13a35f);
+				box-shadow: 0 8px 20px rgba(24, 180, 104, 0.27);
+				transition: transform 0.26s ease, box-shadow 0.26s ease;
+			}
+
+			.theme-btn-whatsapp:hover {
+				background: linear-gradient(135deg, #13a35f, #0f9355);
+				transform: translateY(-2px) scale(1.01);
+				box-shadow: 0 14px 28px rgba(24, 180, 104, 0.34);
+			}
+
+			.theme-badge {
+				background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12));
+				border: 1px solid rgba(255, 255, 255, 0.38);
+				backdrop-filter: blur(7px);
+			}
+
+			.theme-stat {
+				background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.12));
+				border: 1px solid rgba(255, 255, 255, 0.28);
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+			}
+
+			.theme-list li {
+				position: relative;
+				padding-left: 1.1rem;
+			}
+
+			.theme-list li::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0.54rem;
+				height: 0.4rem;
+				width: 0.4rem;
+				border-radius: 9999px;
+				background: linear-gradient(180deg, var(--theme-blue), var(--theme-green));
+			}
+
+			.testimonial-swiper {
+				padding: 0.25rem 0.25rem 3rem;
+			}
+
+			.testimonial-swiper .swiper-wrapper {
+				align-items: stretch;
+			}
+
+			.testimonial-swiper .swiper-slide {
+				height: auto;
+			}
+
+			.testimonial-swiper .swiper-pagination-bullet {
+				background: rgba(11, 79, 138, 0.35);
+				opacity: 1;
+			}
+
+			.testimonial-swiper .swiper-pagination-bullet-active {
+				background: var(--theme-blue);
+			}
+
+			.testimonial-swiper .swiper-button-next,
+			.testimonial-swiper .swiper-button-prev {
+				color: var(--theme-blue);
+				background: rgba(255, 255, 255, 0.9);
+				border: 1px solid rgba(11, 79, 138, 0.18);
+				border-radius: 9999px;
+				width: 2.3rem;
+				height: 2.3rem;
+				box-shadow: 0 8px 20px rgba(11, 79, 138, 0.12);
+			}
+
+			.testimonial-swiper .swiper-button-next::after,
+			.testimonial-swiper .swiper-button-prev::after {
+				font-size: 0.78rem;
+				font-weight: 800;
+			}
+
+			@media (max-width: 767px) {
+				.testimonial-swiper .swiper-button-next,
+				.testimonial-swiper .swiper-button-prev {
+					display: none;
+				}
+			}
+
+			.anim-float {
+				animation: floatY 4.2s ease-in-out infinite;
+			}
+
+			.anim-fade-up {
+				opacity: 0;
+				animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+				animation-delay: var(--anim-delay, 0s);
+			}
+
+			.hero-content > * {
+				opacity: 0;
+				animation: fadeSlideUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+			}
+
+			.hero-content > *:nth-child(1) {
+				animation-delay: 0.08s;
+			}
+
+			.hero-content > *:nth-child(2) {
+				animation-delay: 0.2s;
+			}
+
+			.hero-content > *:nth-child(3) {
+				animation-delay: 0.32s;
+			}
+
+			.hero-content > *:nth-child(4) {
+				animation-delay: 0.44s;
+			}
+
+			.hero-content > *:nth-child(5) {
+				animation-delay: 0.58s;
+			}
+
+			.hero-content > *:nth-child(6) {
+				animation-delay: 0.72s;
+			}
+
+			.reveal-stagger > * {
+				opacity: 0;
+				transform: translateY(18px);
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+			}
+
+			.reveal.visible .reveal-stagger > * {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(1) {
+				transition-delay: 0.06s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(2) {
+				transition-delay: 0.12s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(3) {
+				transition-delay: 0.18s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(4) {
+				transition-delay: 0.24s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(5) {
+				transition-delay: 0.3s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(6) {
+				transition-delay: 0.36s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(7) {
+				transition-delay: 0.42s;
+			}
+
+			.reveal.visible .reveal-stagger > *:nth-child(8) {
+				transition-delay: 0.48s;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				* {
+					animation-duration: 0.01ms !important;
+					animation-iteration-count: 1 !important;
+					transition-duration: 0.01ms !important;
+					scroll-behavior: auto !important;
+				}
+
+				.reveal,
+				.reveal-stagger > * {
+					opacity: 1 !important;
+					transform: none !important;
+				}
+			}
+		</style>
+	</head>
+	<body class="bg-white text-slate-700 antialiased">
+		<a
+			href="https://wa.me/918218652502?text=Hello%20Negi%20Physiotherapy%20Clinic%2C%20I%20want%20to%20book%20an%20appointment."
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label="Chat on WhatsApp"
+			class="theme-btn-whatsapp anim-float fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white shadow-soft transition"
+		>
+			<svg viewBox="0 0 24 24" class="h-5 w-5 fill-current" aria-hidden="true">
+				<path d="M19.05 4.94A10 10 0 0 0 3.42 17.02L2 22l5.1-1.34A10 10 0 1 0 19.05 4.94Zm-7.08 15.37a8.28 8.28 0 0 1-4.22-1.16l-.3-.18-3.02.79.81-2.94-.2-.3a8.27 8.27 0 1 1 6.93 3.79Zm4.53-6.19c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.77.97-.14.16-.28.18-.53.06-.25-.12-1.03-.38-1.96-1.22-.72-.64-1.2-1.43-1.34-1.67-.14-.25-.02-.38.1-.5.11-.11.25-.28.37-.41.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.32-.76-1.81-.2-.48-.4-.41-.55-.42l-.47-.01c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.18.87 2.33.99 2.49.12.16 1.7 2.59 4.12 3.63.58.25 1.03.4 1.38.51.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+			</svg>
+			WhatsApp
+		</a>
+
+		<header class="sticky top-0 z-40 border-b border-slate-100 bg-white/90 backdrop-blur-md">
+			<nav class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+				<a href="#home" class="flex items-center gap-3 text-sm font-extrabold leading-tight text-medicalBlue sm:text-base">
+					<img src="./public/logo-mint-light.png" alt="Negi Physiotherapy Clinic Logo" class="h-11 w-11 rounded-full border border-slate-200 object-cover" loading="eager" />
+					<span>
+						Negi Physiotherapy Clinic
+						<span class="block text-xs font-medium text-medicalGreen">Ortho & Neuro Rehab Center</span>
+					</span>
+				</a>
+				<ul class="hidden items-center gap-6 text-sm font-medium md:flex">
+					<li><a href="#about" class="nav-link transition hover:text-medicalBlue">About</a></li>
+					<li><a href="#services" class="nav-link transition hover:text-medicalBlue">Services</a></li>
+					<li><a href="#conditions" class="nav-link transition hover:text-medicalBlue">Conditions</a></li>
+					<li><a href="#testimonials" class="nav-link transition hover:text-medicalBlue">Testimonials</a></li>
+					<li><a href="#contact" class="nav-link transition hover:text-medicalBlue">Contact</a></li>
+				</ul>
+				<a
+					href="tel:+918218652502"
+					class="theme-btn-primary inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-white transition"
+				>
+					<i data-lucide="phone-call" class="h-4 w-4"></i>
+					Call Now
+				</a>
+			</nav>
+		</header>
+
+		<main>
+			<section
+				id="home"
+				class="relative isolate overflow-hidden"
+				style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80'); background-size: cover; background-position: center;"
+			>
+				<div class="hero-overlay absolute inset-0"></div>
+				<div class="relative mx-auto flex min-h-[85vh] w-full max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
+					<div class="hero-content max-w-3xl text-white">
+						<p class="theme-badge mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold tracking-wide ring-1 ring-white/30 sm:text-sm">
+							<i data-lucide="shield-check" class="h-4 w-4"></i>
+							Trusted Ortho & Neuro Rehabilitation Care
+						</p>
+						<h1 class="text-3xl font-extrabold leading-tight sm:text-5xl">
+							Expert Physiotherapy Care for Pain-Free Living
+						</h1>
+						<p class="mt-4 text-base text-slate-100 sm:text-lg">Ortho • Neuro • Rehab • Home Care</p>
+						<p class="mt-4 max-w-2xl text-sm text-slate-100/95 sm:text-base">
+							At Negi Physiotherapy Clinic, we combine evidence-based treatment, compassionate care, and focused rehabilitation plans to help you recover faster, move better, and return to daily life with confidence.
+						</p>
+						<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+							<a
+								href="#contact"
+								class="theme-btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition"
+							>
+								<i data-lucide="calendar-check-2" class="h-4 w-4"></i>
+								Book Appointment
+							</a>
+							<a
+								href="tel:+918218652502"
+								class="theme-btn-primary inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition"
+							>
+								<i data-lucide="phone" class="h-4 w-4"></i>
+								Call Now
+							</a>
+						</div>
+
+						<div class="mt-10 grid max-w-xl grid-cols-2 gap-4 sm:gap-6">
+							<div class="theme-stat rounded-2xl bg-white/15 p-4 backdrop-blur-md ring-1 ring-white/30">
+								<p class="text-2xl font-extrabold">12+ Years</p>
+								<p class="text-sm text-slate-100">Clinical experience in orthopedic and neuro rehab</p>
+							</div>
+							<div class="theme-stat rounded-2xl bg-white/15 p-4 backdrop-blur-md ring-1 ring-white/30">
+								<p class="text-2xl font-extrabold">5,000+ Patients</p>
+								<p class="text-sm text-slate-100">Successfully treated with customized recovery plans</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="about" class="section-wrap reveal mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+				<div class="mx-auto max-w-3xl text-center">
+					<h2 class="section-title centered text-2xl font-extrabold text-slate-900 sm:text-3xl">About Negi Physiotherapy Clinic</h2>
+					<p class="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+						Negi Physiotherapy Clinic – Ortho & Neuro Rehab Center is dedicated to restoring mobility, reducing pain, and improving quality of life through structured and patient-focused physiotherapy. Every treatment plan is tailored to your condition, lifestyle, and recovery goals.
+					</p>
+				</div>
+				<div class="reveal-stagger mt-10 grid gap-6 md:grid-cols-3">
+					<article class="theme-card rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+						<div class="mb-4 inline-flex rounded-xl bg-medicalIce p-3 text-medicalBlue">
+							<i data-lucide="user-round-check" class="h-5 w-5"></i>
+						</div>
+						<h3 class="text-lg font-bold text-slate-900">Personalized Treatment</h3>
+						<p class="mt-2 text-sm leading-6 text-slate-600">
+							We assess each patient individually and create recovery programs aligned with clinical needs and daily routine.
+						</p>
+					</article>
+					<article class="theme-card rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+						<div class="mb-4 inline-flex rounded-xl bg-medicalMint p-3 text-medicalGreen">
+							<i data-lucide="activity" class="h-5 w-5"></i>
+						</div>
+						<h3 class="text-lg font-bold text-slate-900">Advanced Techniques</h3>
+						<p class="mt-2 text-sm leading-6 text-slate-600">
+							From manual therapy to modern rehabilitation protocols, we use evidence-based techniques for sustainable outcomes.
+						</p>
+					</article>
+					<article class="theme-card rounded-2xl border border-slate-100 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+						<div class="mb-4 inline-flex rounded-xl bg-medicalIce p-3 text-medicalBlue">
+							<i data-lucide="stethoscope" class="h-5 w-5"></i>
+						</div>
+						<h3 class="text-lg font-bold text-slate-900">Experienced Therapist</h3>
+						<p class="mt-2 text-sm leading-6 text-slate-600">
+							Hands-on clinical expertise in orthopedic pain, neurological rehabilitation, and post-surgical recovery support.
+						</p>
+					</article>
+				</div>
+
+				<div class="theme-soft-panel mt-12 grid items-center gap-8 rounded-3xl border border-slate-100 bg-slate-50 p-6 shadow-soft lg:grid-cols-[1.15fr_1fr] lg:p-8">
+					<div>
+						<p class="inline-flex items-center gap-2 rounded-full bg-medicalIce px-3 py-1 text-xs font-semibold text-medicalBlue">
+							<i data-lucide="user-cog" class="h-4 w-4"></i>
+							Meet Your Physiotherapist
+						</p>
+						<h3 class="mt-4 text-2xl font-extrabold text-slate-900">Dr. Mangesh Negi (BPT, MPT)</h3>
+						<p class="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
+							Known for result-focused orthopedic and neurological rehabilitation, Dr. Negi helps patients recover confidently through a practical and personalized care approach.
+						</p>
+						<div class="mt-5 grid gap-3 sm:grid-cols-2">
+							<a href="tel:+918218652502" class="theme-btn-primary inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition">
+								<i data-lucide="phone-call" class="h-4 w-4"></i>
+								Call: 8218652502
+							</a>
+							<a href="tel:+919719604206" class="theme-btn-outline inline-flex items-center justify-center gap-2 rounded-full border border-medicalBlue px-5 py-2.5 text-sm font-semibold text-medicalBlue transition hover:bg-medicalIce">
+								<i data-lucide="phone" class="h-4 w-4"></i>
+								Call: 9719604206
+							</a>
+						</div>
+					</div>
+					<div class="mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-white shadow-soft">
+						<img src="./public/doctor.jpeg" alt="Dr. Mangesh Negi - Physiotherapist" class="h-full w-full object-cover" loading="lazy" />
+					</div>
+				</div>
+			</section>
+
+			<section id="services" class="section-wrap reveal bg-medicalIce/70 py-16">
+				<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+					<h2 class="section-title centered text-center text-2xl font-extrabold text-slate-900 sm:text-3xl">Our Physiotherapy Services</h2>
+					<p class="mx-auto mt-3 max-w-2xl text-center text-sm text-slate-600 sm:text-base">
+						Comprehensive care designed to reduce pain, restore movement, and accelerate recovery.
+					</p>
+					<div class="reveal-stagger mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="bone" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Orthopedic Physiotherapy</h3>
+							<p class="mt-2 text-sm text-slate-600">Targeted treatment for joint pain, spine issues, and musculoskeletal injuries.</p>
+						</article>
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="brain" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Neuro Rehabilitation</h3>
+							<p class="mt-2 text-sm text-slate-600">Focused therapy for paralysis, stroke recovery, and neurological conditions.</p>
+						</article>
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="dumbbell" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Sports Injury Rehab</h3>
+							<p class="mt-2 text-sm text-slate-600">Rebuild strength, flexibility, and performance after sports-related injuries.</p>
+						</article>
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="bandage" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Post-Surgery Rehab</h3>
+							<p class="mt-2 text-sm text-slate-600">Structured rehabilitation to restore function after orthopedic and neuro surgeries.</p>
+						</article>
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="heart-pulse" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Pain Management</h3>
+							<p class="mt-2 text-sm text-slate-600">Evidence-based interventions for chronic pain, inflammation, and movement limitations.</p>
+						</article>
+						<article class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<i data-lucide="house" class="h-6 w-6 text-medicalBlue"></i>
+							<h3 class="mt-4 text-lg font-bold text-slate-900">Home Physiotherapy</h3>
+							<p class="mt-2 text-sm text-slate-600">Convenient home visits for patients requiring supervised therapy in a familiar setting.</p>
+						</article>
+					</div>
+
+					<div class="reveal-stagger mt-10 grid gap-6 lg:grid-cols-2">
+						<div class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<h3 class="text-xl font-extrabold text-slate-900">Electrotherapy Modalities</h3>
+							<ul class="theme-list mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
+								<li>Short Wave Diathermy (SWD)</li>
+								<li>Long Wave Diathermy (LWD)</li>
+								<li>Ultrasound Therapy (UST)</li>
+								<li>Wax Therapy</li>
+								<li>Electrical Muscle Stimulation</li>
+								<li>TENS</li>
+								<li>Hot & Cold Therapy</li>
+								<li>Interferential Therapy (IFT)</li>
+								<li>Exercise Therapy</li>
+								<li>Cervical & Lumbar Traction</li>
+							</ul>
+						</div>
+						<div class="theme-card rounded-2xl bg-white p-6 shadow-soft">
+							<h3 class="text-xl font-extrabold text-slate-900">Rehab Programs Available For</h3>
+							<ul class="theme-list mt-4 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
+								<li>Frozen Shoulder</li>
+								<li>Cervical Pain & Vertigo</li>
+								<li>Low Back Pain (Slip Disc)</li>
+								<li>Arthritis (Knee / Hip Pain)</li>
+								<li>Post Fracture Rehabilitation</li>
+								<li>Tennis Elbow</li>
+								<li>Paralysis / Cerebral Palsy / Polio</li>
+								<li>Total Knee Replacement</li>
+								<li>Total Hip Replacement</li>
+								<li>Ligament Reconstruction</li>
+								<li>Spinal Surgery Recovery</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="conditions" class="section-wrap reveal mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+				<div class="reveal-stagger grid items-start gap-10 lg:grid-cols-2">
+					<div class="anim-fade-up">
+						<h2 class="section-title text-2xl font-extrabold text-slate-900 sm:text-3xl">Conditions We Treat</h2>
+						<p class="mt-4 text-sm leading-7 text-slate-600 sm:text-base">
+							Early physiotherapy intervention helps reduce pain, improve mobility, and prevent long-term complications.
+						</p>
+						<ul class="reveal-stagger mt-6 grid gap-3 text-sm sm:grid-cols-2 sm:text-base">
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Back Pain</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Neck Pain</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Slip Disc</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Paralysis</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Stroke Recovery</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Frozen Shoulder</li>
+							<li class="rounded-xl bg-medicalIce px-4 py-3 font-medium text-slate-700 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-medicalBlue hover:shadow-soft">Arthritis</li>
+						</ul>
+					</div>
+					<div class="theme-card anim-fade-up rounded-2xl bg-gradient-to-br from-medicalBlue to-medicalGreen p-8 text-white shadow-soft">
+						<h3 class="text-xl font-extrabold">Why Choose Us</h3>
+						<div class="mt-6 space-y-4">
+							<div class="flex items-start gap-3">
+								<i data-lucide="badge-check" class="mt-1 h-5 w-5"></i>
+								<p>Certified Physiotherapist with a patient-first treatment philosophy.</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<i data-lucide="clipboard-list" class="mt-1 h-5 w-5"></i>
+								<p>Personalized Care Plan for every stage of your recovery journey.</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<i data-lucide="scan-line" class="mt-1 h-5 w-5"></i>
+								<p>Advanced Equipment and progressive techniques for measurable results.</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<i data-lucide="car-taxi-front" class="mt-1 h-5 w-5"></i>
+								<p>Home Visit Available for elderly patients and post-operative care.</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<i data-lucide="wallet" class="mt-1 h-5 w-5"></i>
+								<p>Affordable Treatment options with transparent care guidance.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="testimonials" class="section-wrap reveal bg-medicalIce/70 py-16">
+				<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+					<h2 class="section-title centered text-center text-2xl font-extrabold text-slate-900 sm:text-3xl">What Our Patients Say</h2>
+					<div class="testimonial-swiper swiper mt-10">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"My chronic back pain improved significantly in just a few weeks. The treatment plan was clear and very effective."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Rohit Sharma</p>
+								</article>
+							</div>
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"After my knee surgery, I regained confidence in walking thanks to their guided post-surgery rehab sessions."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Pooja Verma</p>
+								</article>
+							</div>
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"The home physiotherapy support for my father after stroke was professional, compassionate, and result-oriented."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Neha Rawat</p>
+								</article>
+							</div>
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"I had severe neck stiffness and headaches. Their therapy and posture corrections made a huge difference."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Amit Bisht</p>
+								</article>
+							</div>
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"Excellent guidance for my frozen shoulder recovery. Exercises were simple and results were fast."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Sonal Joshi</p>
+								</article>
+							</div>
+							<div class="swiper-slide">
+								<article class="theme-card h-full rounded-2xl bg-white p-6 shadow-soft">
+									<div class="mb-3 flex text-amber-500">
+										<i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+									</div>
+									<p class="text-sm text-slate-600">"Very professional and friendly clinic. My posture pain reduced a lot within a month."</p>
+									<p class="mt-4 text-sm font-bold text-slate-900">Deepak Nautiyal</p>
+								</article>
+							</div>
+						</div>
+						<div class="swiper-button-prev" aria-label="Previous testimonial"></div>
+						<div class="swiper-button-next" aria-label="Next testimonial"></div>
+						<div class="swiper-pagination mt-6"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section-wrap reveal py-16">
+				<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+					<div class="theme-card rounded-3xl bg-gradient-to-r from-medicalBlue to-medicalGreen p-8 text-center text-white shadow-soft sm:p-12">
+						<h2 class="text-2xl font-extrabold sm:text-3xl">Start Your Recovery Today</h2>
+						<p class="mx-auto mt-3 max-w-2xl text-sm text-slate-100 sm:text-base">
+							Don’t let pain limit your life. Book your consultation now and take the first step toward a stronger, healthier future.
+						</p>
+						<a
+							href="#contact"
+							class="theme-btn-primary mt-6 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition"
+						>
+							<i data-lucide="calendar-plus-2" class="h-4 w-4"></i>
+							Book Appointment
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="contact" class="section-wrap reveal bg-slate-50 py-16">
+				<div class="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+					<div>
+						<h2 class="section-title text-2xl font-extrabold text-slate-900 sm:text-3xl">Contact & Appointment</h2>
+						<p class="mt-4 text-sm text-slate-600 sm:text-base">
+							For appointments, follow-up sessions, or home physiotherapy support, connect with us directly.
+						</p>
+						<div class="reveal-stagger mt-6 space-y-4">
+							<div class="theme-card flex items-start gap-3 rounded-2xl bg-white p-4 shadow-soft">
+								<i data-lucide="phone-call" class="mt-1 h-5 w-5 text-medicalBlue"></i>
+								<div>
+									<p class="font-semibold text-slate-900">Phone</p>
+									<div class="space-y-1 text-sm text-slate-600">
+										<a href="tel:+918218652502" class="block hover:text-medicalBlue">+91 82186 52502</a>
+										<a href="tel:+919719604206" class="block hover:text-medicalBlue">+91 97196 04206</a>
+									</div>
+								</div>
+							</div>
+							<div class="theme-card flex items-start gap-3 rounded-2xl bg-white p-4 shadow-soft">
+								<i data-lucide="map-pin" class="mt-1 h-5 w-5 text-medicalBlue"></i>
+								<div>
+									<p class="font-semibold text-slate-900">Address</p>
+									<p class="text-sm text-slate-600">Malviya Udhyan, Near Gas Agency, Kotdwara, Uttarakhand</p>
+									<a
+										href="https://www.google.com/maps/place/Negi+Physiotherapy+clinic+ortho+and+neuro+rehab+center/"
+										target="_blank"
+										rel="noopener noreferrer"
+										class="mt-1 inline-block text-sm text-medicalBlue hover:underline"
+									>
+										Open in Google Maps
+									</a>
+								</div>
+							</div>
+							<div class="theme-card flex items-start gap-3 rounded-2xl bg-white p-4 shadow-soft">
+								<i data-lucide="clock-3" class="mt-1 h-5 w-5 text-medicalBlue"></i>
+								<div>
+									<p class="font-semibold text-slate-900">Clinic Timings</p>
+									<p class="text-sm text-slate-600"><span class="font-semibold text-slate-700">Summer:</span> 9:00 AM - 1:00 PM, 4:00 PM - 8:00 PM</p>
+									<p class="text-sm text-slate-600"><span class="font-semibold text-slate-700">Winter:</span> 10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM</p>
+								</div>
+							</div>
+							<div class="flex flex-wrap gap-3 pt-2">
+								<a
+									href="https://wa.me/918218652502?text=Hello%20Negi%20Physiotherapy%20Clinic%2C%20I%20want%20to%20book%20an%20appointment."
+									target="_blank"
+									rel="noopener noreferrer"
+									class="theme-btn-whatsapp inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition"
+								>
+									<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+										<path d="M19.05 4.94A10 10 0 0 0 3.42 17.02L2 22l5.1-1.34A10 10 0 1 0 19.05 4.94Zm-7.08 15.37a8.28 8.28 0 0 1-4.22-1.16l-.3-.18-3.02.79.81-2.94-.2-.3a8.27 8.27 0 1 1 6.93 3.79Zm4.53-6.19c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.55.12-.16.25-.63.8-.77.97-.14.16-.28.18-.53.06-.25-.12-1.03-.38-1.96-1.22-.72-.64-1.2-1.43-1.34-1.67-.14-.25-.02-.38.1-.5.11-.11.25-.28.37-.41.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.32-.76-1.81-.2-.48-.4-.41-.55-.42l-.47-.01c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.02 0 1.18.87 2.33.99 2.49.12.16 1.7 2.59 4.12 3.63.58.25 1.03.4 1.38.51.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"/>
+									</svg>
+									WhatsApp Us
+								</a>
+								<a
+									href="tel:+918218652502"
+									class="theme-btn-primary inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition"
+								>
+									<i data-lucide="phone" class="h-4 w-4"></i>
+									Click to Call
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="theme-card overflow-hidden rounded-2xl bg-white shadow-soft">
+						<iframe
+							title="Negi Physiotherapy Clinic Location"
+							src="https://www.google.com/maps?q=Negi+Physiotherapy+clinic+ortho+and+neuro+rehab+center&output=embed"
+							width="100%"
+							height="420"
+							style="border: 0"
+							allowfullscreen=""
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-10 text-slate-300">
+			<div class="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
+				<div>
+					<h3 class="text-lg font-bold text-white">Negi Physiotherapy Clinic</h3>
+					<p class="mt-2 text-sm text-slate-400">Ortho & Neuro Rehab Center</p>
+					<p class="mt-3 text-sm text-slate-400">Dedicated to pain relief, mobility restoration, and long-term rehabilitation outcomes.</p>
+				</div>
+				<div>
+					<h3 class="text-sm font-semibold uppercase tracking-wider text-white">Quick Links</h3>
+					<ul class="mt-3 space-y-2 text-sm">
+						<li><a href="#about" class="hover:text-white">About Clinic</a></li>
+						<li><a href="#services" class="hover:text-white">Services</a></li>
+						<li><a href="#conditions" class="hover:text-white">Conditions Treated</a></li>
+						<li><a href="#contact" class="hover:text-white">Book Appointment</a></li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="text-sm font-semibold uppercase tracking-wider text-white">Connect</h3>
+					<div class="mt-3 flex items-center gap-3">
+						<a
+							href="https://www.facebook.com/negi2403/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-sm font-medium transition hover:border-slate-500 hover:text-white"
+						>
+							<svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+								<path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H16.7V5.07A22.5 22.5 0 0 0 14.24 5C11.8 5 10.13 6.5 10.13 9.23V11H7.5v3h2.63v8h3.37Z"/>
+							</svg>
+							Facebook
+						</a>
+					</div>
+					<p class="mt-4 text-sm text-slate-400">Mob.: 8218652502, 9719604206</p>
+					<p class="mt-2 text-sm text-slate-400">
+						Website created by
+						<a href="https://asonvtech.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-slate-300 hover:text-white hover:underline">asonvtech.com</a>
+					</p>
+					<p class="mt-2 text-sm text-slate-400">© 2026 Negi Physiotherapy Clinic. All rights reserved.</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script src="https://unpkg.com/lucide@latest"></script>
+		<script>
+			lucide.createIcons();
+
+			const testimonialsSwiperEl = document.querySelector('.testimonial-swiper');
+			if (testimonialsSwiperEl && typeof Swiper !== 'undefined') {
+				new Swiper(testimonialsSwiperEl, {
+					loop: true,
+					speed: 900,
+					spaceBetween: 20,
+					autoplay: {
+						delay: 2800,
+						disableOnInteraction: false,
+						pauseOnMouseEnter: true,
+					},
+					slidesPerView: 1.1,
+					grabCursor: true,
+					pagination: {
+						el: '.testimonial-swiper .swiper-pagination',
+						clickable: true,
+					},
+					navigation: {
+						nextEl: '.testimonial-swiper .swiper-button-next',
+						prevEl: '.testimonial-swiper .swiper-button-prev',
+					},
+					breakpoints: {
+						640: {
+							slidesPerView: 2,
+						},
+						1024: {
+							slidesPerView: 3,
+						},
+						1280: {
+							slidesPerView: 4,
+						},
+					},
+				});
+			}
+
+			const revealElements = document.querySelectorAll('.reveal');
+			revealElements.forEach((el, index) => {
+				const delay = Math.min(index * 40, 220);
+				el.style.setProperty('--reveal-delay', `${delay}ms`);
+			});
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+			);
+
+			revealElements.forEach((el) => observer.observe(el));
+		</script>
+	</body>
 </html>
