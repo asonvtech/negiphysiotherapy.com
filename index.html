@@ -15,6 +15,29 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              medicalBlue: '#0b4f8a',
+              medicalBlueLight: '#1d71ba',
+              medicalGreen: '#1fa58f',
+              medicalMint: '#e8fbf6',
+              medicalIce: '#edf6ff',
+            },
+            boxShadow: {
+              soft: '0 10px 30px rgba(15, 76, 129, 0.10)',
+            },
+          },
+        },
+      };
+    </script>
   </head>
   <body>
     <div id="root"></div>
