@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  --theme-blue: #0b4f8a;
+  --theme-blue-light: #1d71ba;
+  --theme-green: #1fa58f;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}

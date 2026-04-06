@@ -1,19 +1,14 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "routes": [
     {
       "handle": "filesystem"
     },
     {
-      "src": "^/$",
-      "dest": "/index.html"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/404.html",
-      "status": 404
+      "dest": "/index.html"
     }
   ]
 }
