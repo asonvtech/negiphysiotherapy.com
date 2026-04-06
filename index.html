@@ -782,14 +782,15 @@
 					<p class="mt-4 text-base leading-7 text-slate-600 sm:text-lg">
 						Share your details and pain area. Our team will call and help you choose the right plan.
 					</p>
-					<form class="mt-5 space-y-3" action="#contact" method="get">
-						<input type="text" name="name" placeholder="Full Name"
+					<form id="request-appointment-form" class="mt-5 space-y-3" action="#contact" method="get"
+						onsubmit="sendToWhatsApp(); return false;">
+						<input type="text" id="name" name="name" placeholder="Full Name"
 							class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-base text-slate-700 outline-none transition focus:border-medicalBlue/50 focus:ring-2 focus:ring-medicalBlue/20"
 							required />
-						<input type="tel" name="phone" placeholder="10-digit mobile" pattern="[0-9]{10}"
+						<input type="tel" id="phone" name="phone" placeholder="10-digit mobile" pattern="[0-9]{10}"
 							class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-base text-slate-700 outline-none transition focus:border-medicalBlue/50 focus:ring-2 focus:ring-medicalBlue/20"
 							required />
-						<textarea name="problem" rows="3" placeholder="Your main problem"
+						<textarea id="problem" name="problem" rows="3" placeholder="Your main problem"
 							class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-base text-slate-700 outline-none transition focus:border-medicalBlue/50 focus:ring-2 focus:ring-medicalBlue/20"
 							required></textarea>
 						<button type="submit"
@@ -2251,6 +2252,42 @@
 				block.open = false;
 			});
 		});
+
+		function sendToWhatsApp() {
+			const name = document.getElementById('name')?.value?.trim() || '';
+			const phone = document.getElementById('phone')?.value?.trim() || '';
+			const problem = document.getElementById('problem')?.value?.trim() || '';
+
+			if (!name || !phone || !problem) {
+				const form = document.getElementById('request-appointment-form');
+				if (form) {
+					form.reportValidity();
+				}
+				return;
+			}
+
+			const now = new Date();
+			const datePart = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+			const randomPart = Math.floor(1000 + Math.random() * 9000);
+			const requestId = `NP-${datePart}-${randomPart}`;
+
+			const message = [
+				'*New Appointment Request*',
+				`*Request ID:* ${requestId}`,
+				'',
+				'*Patient Details*',
+				`- Name: ${name}`,
+				`- Phone: ${phone}`,
+				`- Problem: ${problem}`,
+				'',
+				'Please confirm available appointment slots.',
+				'',
+				'Thank you.'
+			].join('\n');
+			const url = `https://wa.me/918218652502?text=${encodeURIComponent(message)}`;
+
+			window.open(url, '_blank', 'noopener,noreferrer');
+		}
 	</script>
 </body>
 
